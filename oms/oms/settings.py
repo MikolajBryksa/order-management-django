@@ -19,8 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*n6^6dx4+q^eibcwzx5)!8iew0&03t81sv$y$j+0e30dl7w8ux'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -117,5 +115,13 @@ try:
     from oms.local_settings import DATABASES
 except ModuleNotFoundError:
     print("Brak konfiguracji bazy danych w pliku local_settings.py!")
+    print("Uzupełnij dane i spróbuj ponownie!")
+    exit(0)
+
+
+try:
+    from oms.local_settings import SECRET_KEY
+except ModuleNotFoundError:
+    print("Brak konfiguracji secret key w pliku local_settings.py!")
     print("Uzupełnij dane i spróbuj ponownie!")
     exit(0)
