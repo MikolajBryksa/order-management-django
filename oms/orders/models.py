@@ -1,15 +1,63 @@
 from django.db import models
 
 
-class Model(models.Model):
-    # name = models.CharField(max_length=128)
-    # description = models.TextField()
+class Order(models.Model):
+    # Status
+    NEW = 'New'
+    URGENT = 'Urgent'
+    DRAWING = 'Drawing'
+    INCOMPLETE = 'Incomplete'
+    DESIGNED = 'Designed'
+    EVAULATION = 'Evaluation'
+    IMPROVEMENT = 'Improvement'
+    ACCEPTED = 'Accepted'
+    PRODUCTION = 'Production'
+    PACKED = 'Packed'
+    SENT = 'Sent'
 
-    # class Meta:
-    #     verbose_name = "Model"
-    #     verbose_name_plural = "Models"
+    STATUS = [
+        (NEW, 'New'),
+        (URGENT, 'Urgent'),
+        (DRAWING, 'Drawing'),
+        (INCOMPLETE, 'Incomplete'),
+        (DESIGNED, 'Designed'),
+        (EVAULATION, 'Evaluation'),
+        (IMPROVEMENT, 'Improvement'),
+        (ACCEPTED, 'Accepted'),
+        (PRODUCTION, 'Production'),
+        (PACKED, 'Packed'),
+        (SENT, 'Sent'),
+    ]
 
-    pass
+    # Seller
+    MARK = 'Mark'
+    NATALIE = 'Natalie'
+    JOANNA = 'Joanna'
+
+    SELLER = [
+        (MARK, 'Mark'),
+        (NATALIE, 'Natalie'),
+        (JOANNA, 'Joanna'),
+    ]
+
+    # Designer
+    MIKI = 'Miki'
+    OLA = 'Ola'
+
+    DESIGNER = [
+        (MIKI, 'Miki'),
+        (OLA, 'Ola'),
+    ]
+
+    date = models.DateTimeField(auto_now_add=True)
+    seller = models.CharField(max_length=20, choices=SELLER)
+    customer = models.EmailField(max_length=254)
+    designer = models.CharField(max_length=20, choices=DESIGNER)
+    status = models.CharField(max_length=20, choices=STATUS, default=NEW)
+
+    class Meta:
+        verbose_name = "Order"
+        verbose_name_plural = "Orders"
 
     def __str__(self):
-        return self.name
+        return self.customer

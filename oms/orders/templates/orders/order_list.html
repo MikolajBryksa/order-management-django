@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table">
+  <caption>Order Management System</caption>
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Seller</th>
+      <th scope="col">Customer</th>
+      <th scope="col">Designer</th>
+      <th scope="col">Status</th>
+      <th scope="col"><a href='/order_add/'><button>Add order</button></a></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td data-label="Date<">{{ order.date }}</td>
+      <td data-label="Seller">{{ order.seller }}</td>
+      <td data-label="Customer">{{ order.customer }}</td>
+      <td data-label="Designer">{{ order.designer }}</td>
+      <td data-label="Status">{{ order.status }}</td>
+      <td><a href='/order_details/{{ order.pk}}'><button>Details</button></a></td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+
+{% endblock %}
