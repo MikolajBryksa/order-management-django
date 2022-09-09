@@ -1,8 +1,15 @@
 from django import forms
-# from .models import Model
+from .models import Order
 
 
-class AddModelForm(forms.Form):
-    # category_name = forms.CharField(max_length=64)
-    # slug = forms.CharField(max_length=64)
-    pass
+class OrderAddForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('seller', 'customer', 'designer', 'status')
+
+        widgets = {
+            'seller': forms.Select(attrs={'class': 'custom-selector'}),
+            'customer': forms.TextInput(attrs={'class': 'custom-selector'}),
+            'designer': forms.Select(attrs={'class': 'custom-selector'}),
+            'status': forms.Select(attrs={'class': 'custom-selector'}),
+        }
