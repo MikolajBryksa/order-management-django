@@ -1,34 +1,112 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<table class="table">
-  <caption>Order Details</caption>
-
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Seller</th>
-      <th scope="col">Customer</th>
-      <th scope="col">Designer</th>
-      <th scope="col">Status</th>
-      <td><a href='/order_delete/{{ order.pk }}'><button>Delete</button></a></td>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td data-label="Date<">{{ order.date }}</td>
-      <td data-label="Seller">{{ order.seller }}</td>
-      <td data-label="Customer">{{ order.customer }}</td>
-      <td data-label="Designer">{{ order.designer }}</td>
-      <td data-label="Status">{{ order.status }}</td>
-      <td><a href='/order_edit/{{ order.pk }}'><button>Edit</button></a></td>
-    </tr>
-
-  </tbody>
-</table>
+<h2>Order details</h2>
+{{ order.customer }}
+</br></br>
+<a href='/item_add/'><button type="button">Add product</button></a></td>
+<a href='/'><button type="button">Back</button></a></td>
+</br></br>
 
 
+    {% for item in items %}
+    <div class="item">
+    <table class="table">
+        <thead>
+        <tr><th data-label="name" colspan="2">{{ item.name }}</th></tr>
+        </thead>
+        <tr>
+            <td>Material:</td>
+            <td data-label="material">{{ item.material }}</td>
+        </tr>
+
+         <tr>
+            <td>Thickness:</td>
+            <td data-label="thickness">{{ item.thickness }} mm</td>
+        </tr>
+
+        <tr>
+            <td>Color:</td>
+            <td data-label="color">{{ item.color }}</td>
+        </tr>
+
+        {% if item.dimensions != None %}
+        <tr>
+            <td>Dimensions:</td>
+            <td data-label="dimensions">{{ item.dimensions }}</td>
+        </tr>
+        {%  endif %}
+
+        <tr>
+            <td>Width:</td>
+            <td data-label="width">{{ item.width }} mm</td>
+        </tr>
+
+        <tr>
+            <td>Height:</td>
+            <td data-label="height">{{ item.height }} mm</td>
+        </tr>
+
+        {% if item.depth != None %}
+        <tr>
+            <td>Depth:</td>
+            <td data-label="depth">{{ item.depth }} mm</td>
+        </tr>
+        {%  endif %}
+
+        <tr>
+            <td>Fastening:</td>
+            <td data-label="fastening">{{ item.fastening }}</td>
+        </tr>
+
+        {% if item.hole != None %}
+        <tr>
+            <td>Hole:</td>
+            <td data-label="hole">{{ item.hole}} mm</td>
+        </tr>
+        {%  endif %}
+
+        {% if item.rounding != None %}
+        <tr>
+            <td>Rounding:</td>
+            <td data-label="rounding">{{ item.rounding}}</td>
+        </tr>
+        {%  endif %}
+
+        {% if item.mark != None %}
+        <tr>
+            <td>Mark:</td>
+            <td data-label="mark">{{ item.mark}}</td>
+        </tr>
+        {%  endif %}
+
+        <tr>
+            <td>Quantity:</td>
+            <td data-label="quantity">{{ item.quantity }}</td>
+        </tr>
+
+        {% if item.description %}
+        <tr><td data-label="description" colspan="2" class="description">{{ item.description }}</td></tr>
+        {%  endif %}
+
+        <tr>
+            <td><a href='/item_edit/{{ item.pk }}'><button>Edit product</button></a></td>
+            <td><a href='/item_delete/{{ item.pk }}'><button>Delete product</button></a></td>
+        </tr>
+
+{#        {% for instance in data %}#}
+{#            {% for field, value in instance.fields.items %}#}
+{#                {% if value != None and field != "name" and field != "description" %}#}
+{#                    <tr>#}
+{#                        <td>{{ field }}</td>#}
+{#                        <td data-label="{{ value }}">{{ value }}</td>#}
+{#                    </tr>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
+
+    </table></br>
+    </div>
+    {% endfor %}
 
 {% endblock %}

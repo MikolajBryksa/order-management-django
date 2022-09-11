@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Delete order</h2>
-{{ order.customer }}
+<h2>Delete item</h2>
+{{ item.name }}
 </br></br>
 <form action="" method="post">
 {% csrf_token %}
 {{ form.as_p }}
 <button type="submit">Delete</button>
-<a href='/'><button type="button">Back</button></a>
 </form>
 
 {% endblock %}

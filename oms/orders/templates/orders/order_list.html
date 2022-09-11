@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h2>Order Management System</h2>
 <table class="table">
-  <caption>Order Management System</caption>
 
-  <thead class="thead-dark">
+  <thead>
     <tr>
       <th scope="col">Date</th>
       <th scope="col">Seller</th>
@@ -18,18 +17,20 @@
   <tbody>
     {% for order in orders %}
     <tr>
-      <td data-label="Date<">{{ order.date }}</td>
-      <td data-label="Seller">{{ order.seller }}</td>
-      <td data-label="Customer">{{ order.customer }}</td>
-      <td data-label="Designer">{{ order.designer }}</td>
-      <td data-label="Status">{{ order.status }}</td>
-      <td><a href='/order_details/{{ order.pk}}'><button>Details</button></a></td>
+      <td data-label="date<">{{ order.date }}</td>
+      <td data-label="seller">{{ order.seller }}</td>
+      <td data-label="customer">{{ order.customer }}</td>
+      <td data-label="designer">{{ order.designer }}</td>
+      <td data-label="status">{{ order.status }}</td>
+      <td>
+          <a href='/order_edit/{{ order.pk }}'><button>Edit</button></a>
+          <a href='/order_details/{{ order.pk}}'><button>Details</button></a>
+      </td>
+
     </tr>
     {% endfor %}
 
   </tbody>
 </table>
-
-
 
 {% endblock %}

@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from orders.views import OrderList, OrderAdd, OrderDetails, OrderEdit, OrderDelete
-# , OrderSearch
+from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDelete, ItemAdd, ItemEdit, ItemDelete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', OrderList.as_view(), name='order_list'),
-    path('order_add/', OrderAdd.as_view(), name='order_add'),
     path('order_details/<int:order_pk>/', OrderDetails.as_view(), name='order_details'),
+
+    path('order_add/', OrderAdd.as_view(), name='order_add'),
     path('order_edit/<pk>/', OrderEdit.as_view(), name="order_edit"),
     path('order_delete/<pk>/', OrderDelete.as_view(), name="order_delete"),
-    # path('order_search/', OrderSearch.as_view(), name="order_search"),
+
+    path('item_add/', ItemAdd.as_view(), name='item_add'),
+    path('item_edit/<pk>/', ItemEdit.as_view(), name="item_edit"),
+    path('item_delete/<pk>/', ItemDelete.as_view(), name="item_delete"),
+
 ]
