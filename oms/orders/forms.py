@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order, Item
+from .models import Order, Item, Comment
 
 
 class OrderAddForm(forms.ModelForm):
@@ -18,7 +18,9 @@ class OrderAddForm(forms.ModelForm):
 class ItemAddForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = '__all__'
+        fields = (
+        'order', 'name', 'material', 'thickness', 'color', 'dimensions', 'width', 'height', 'depth', 'fastening',
+        'hole', 'rounding', 'mark', 'quantity', 'description', 'actions')
 
         widgets = {
             'order': forms.Select(attrs={'class': 'custom-selector'}),
@@ -36,4 +38,16 @@ class ItemAddForm(forms.ModelForm):
             'mark': forms.Select(attrs={'class': 'custom-selector'}),
             'quantity': forms.NumberInput(attrs={'class': 'custom-selector'}),
             'description': forms.Textarea(attrs={'class': 'custom-selector'}),
+            'actions': forms.SelectMultiple(attrs={'class': 'custom-selector'}),
+        }
+
+
+class CommentAddForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('order', 'message')
+
+        widgets = {
+            'order': forms.Select(attrs={'class': 'custom-selector'}),
+            'message': forms.Textarea(attrs={'class': 'custom-selector'}),
         }

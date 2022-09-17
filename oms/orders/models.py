@@ -63,6 +63,28 @@ class Order(models.Model):
         return self.customer
 
 
+class Action(models.Model):
+    # PRINTING = 'Printing'
+    # LAMINATION = 'Lamination'
+    # PLOTTING = 'Plotting'
+    # MILLING = 'Milling'
+    # CUTTING = 'Cutting'
+    # LASER = 'Laser'
+    # ENGRAVER = 'Engraver'
+    # RESIN = 'Resin'
+    # FASTENING = 'Fastening'
+    # STICKING = 'Sticking'
+    # FOLDING = "Folding"
+
+    name = models.CharField(max_length=30)
+    translation = models.CharField(max_length=30)
+    sequence = models.IntegerField()
+    ordering = ['sequence']
+
+    def __str__(self):
+        return self.name
+
+
 class Item(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
@@ -161,6 +183,7 @@ class Item(models.Model):
     ENGRAVER = 'Engraver'
     FOIL = 'Foil'
     STICKER = 'Sticker'
+    OUTSOURCE = "Outsource"
     WITHOUT = 'Without'
     CUSTOM = 'Custom'
 
@@ -169,6 +192,7 @@ class Item(models.Model):
         (ENGRAVER, 'Engraver'),
         (FOIL, 'Foil'),
         (STICKER, 'Sticker'),
+        (OUTSOURCE, 'Outsource'),
         (WITHOUT, 'Without'),
         (CUSTOM, 'Custom'),
     ]
@@ -189,5 +213,16 @@ class Item(models.Model):
     quantity = models.IntegerField()
     description = models.TextField(null=True, blank=True, default=None)
 
+    actions = models.ManyToManyField(Action)
+
     def __str__(self):
         return self.name
+
+
+class Comment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.date

@@ -4,17 +4,28 @@
 <h2>Order details</h2>
 {{ order.customer }}
 </br></br>
-<a href='/item_add/'><button type="button">Add product</button></a></td>
-<a href='/'><button type="button">Back</button></a></td>
+<a href='/item_add/'><button type="button">Add product</button></a>
+<a href='/'><button type="button">Back</button></a>
+<a href='/comment_add/'><button type="button">Comment</button></a>
 </br></br>
 
+    {% for comment in comments %}
+        {% if comment != None %}
+            <a href='/comment_edit/{{ comment.pk }}'>{{ comment.date|date:'H:i' }}: {{ comment.message }}</a>
+            </br></br>
+        {%  endif %}
+    {% endfor %}
 
     {% for item in items %}
     <div class="item">
     <table class="table">
         <thead>
-        <tr><th data-label="name" colspan="2">{{ item.name }}</th></tr>
+        <tr>
+            <th data-label="name">{{ item.name }}</th>
+            <th><a href='/item_edit/{{ item.pk }}'><button>Edit product</button></a></th>
+        </tr>
         </thead>
+
         <tr>
             <td>Material:</td>
             <td data-label="material">{{ item.material }}</td>
@@ -89,10 +100,11 @@
         <tr><td data-label="description" colspan="2" class="description">{{ item.description }}</td></tr>
         {%  endif %}
 
-        <tr>
-            <td><a href='/item_edit/{{ item.pk }}'><button>Edit product</button></a></td>
-            <td><a href='/item_delete/{{ item.pk }}'><button>Delete product</button></a></td>
-        </tr>
+        <tr><th colspan="2">
+            {% for actions in item.actions.all %}
+                {{ actions.name }}
+            {% endfor %}
+        </th></tr>
 
 {#        {% for instance in data %}#}
 {#            {% for field, value in instance.fields.items %}#}
