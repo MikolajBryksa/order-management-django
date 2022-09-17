@@ -5,6 +5,16 @@
 
 }
 
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--light);
+}
+
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;

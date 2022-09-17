@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDelete, ItemAdd, ItemEdit, ItemDelete
+from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDelete, \
+    ItemAdd, ItemEdit, ItemDelete, CommentAdd, CommentEdit, CommentDelete, Menu
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', OrderList.as_view(), name='order_list'),
+    path('menu/', Menu.as_view(), name='menu'),
     path('order_details/<int:order_pk>/', OrderDetails.as_view(), name='order_details'),
 
     path('order_add/', OrderAdd.as_view(), name='order_add'),
@@ -30,5 +32,9 @@ urlpatterns = [
     path('item_add/', ItemAdd.as_view(), name='item_add'),
     path('item_edit/<pk>/', ItemEdit.as_view(), name="item_edit"),
     path('item_delete/<pk>/', ItemDelete.as_view(), name="item_delete"),
+
+    path('comment_add/', CommentAdd.as_view(), name='comment_add'),
+    path('comment_edit/<pk>/', CommentEdit.as_view(), name="comment_edit"),
+    path('comment_delete/<pk>/', CommentDelete.as_view(), name="comment_delete"),
 
 ]

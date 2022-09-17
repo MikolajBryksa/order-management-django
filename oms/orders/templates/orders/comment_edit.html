@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Edit order</h2>
+<h2>Edit comment</h2>
 
 <form action="" method="post">
 {% csrf_token %}
@@ -9,7 +9,7 @@
 </br>
 <button type="submit">Save</button>
 <a href='/'><button type="button">Back</button></a>
-<a href='/order_delete/{{ order.pk }}'><button type="button">Delete</button></a>
+<a href='/comment_delete/{{ comment.pk }}'><button type="button">Delete</button></a>
 </form>
 
 {% endblock %}

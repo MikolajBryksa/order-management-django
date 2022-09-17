@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Order, Item
-from .forms import OrderAddForm, ItemAddForm
+from .models import Order, Item, Comment
+from .forms import OrderAddForm, ItemAddForm, CommentAddForm
 from django.urls import reverse_lazy
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -14,12 +14,17 @@ class OrderList(View):
         return render(request, 'orders/order_list.html', context)
 
 
+class Menu(View):
+    def get(self, request):
+        return render(request, 'orders/menu.html')
+
+
 class OrderDetails(View):
     def get(self, request, order_pk):
         order = Order.objects.get(pk=order_pk)
+        comments = Comment.objects.filter(order=order_pk).order_by('date')
         items = Item.objects.filter(order=order_pk).order_by('pk')
-        # data = serializers.serialize("python", Item.objects.filter(order=order_pk).order_by('name'))
-        context = {"order": order, "items": items}
+        context = {"order": order, "items": items, "comments": comments}
         return render(request, 'orders/order_details.html', context)
 
 
@@ -58,4 +63,23 @@ class ItemEdit(UpdateView):
 
 class ItemDelete(DeleteView):
     model = Item
+    success_url = reverse_lazy('order_list')
+
+
+class CommentAdd(CreateView):
+    model = Comment
+    form_class = CommentAddForm
+    template_name = 'orders/comment_add.html'
+    success_url = reverse_lazy('order_list')
+
+
+class CommentEdit(UpdateView):
+    model = Comment
+    form_class = CommentAddForm
+    template_name_suffix = '_edit'
+    success_url = reverse_lazy('order_list')
+
+
+class CommentDelete(DeleteView):
+    model = Comment
     success_url = reverse_lazy('order_list')
