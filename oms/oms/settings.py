@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'orders',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +110,7 @@ STATIC_URL = '/static_files/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static_files")]
 
-# LOGIN_URL = '/login'
+LOGIN_URL = '/login/'
 
 
 # Database

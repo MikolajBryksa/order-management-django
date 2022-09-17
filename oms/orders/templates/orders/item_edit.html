@@ -4,12 +4,14 @@
 <h2>Edit item</h2>
 
 <form action="" method="post">
-{% csrf_token %}
-{{ form.as_p }}
+    {% csrf_token %}
+    {{ form.as_p }}
+
 </br>
 <button type="submit">Save</button>
 <a href='/'><button type="button">Back</button></a>
-<a href='/item_delete/{{ item.pk }}'><button type="button">Delete</button></a>
+<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
 </form>
+
 </br></br>
 {% endblock %}

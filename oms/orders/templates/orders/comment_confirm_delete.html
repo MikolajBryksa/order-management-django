@@ -2,13 +2,16 @@
 {% block content %}
 
 <h2>Delete comment</h2>
+
 {{ comment.message }}
 </br></br>
+
 <form action="" method="post">
-{% csrf_token %}
-{{ form.as_p }}
+    {% csrf_token %}
+    {{ form.as_p }}
+
 <button type="submit">Delete</button>
-<a href='/'><button type="button">Back</button></a>
+<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
 </form>
 
 {% endblock %}

@@ -30,13 +30,13 @@ class Order(models.Model):
     ]
 
     # Seller
-    MARK = 'Mark'
-    NATALIE = 'Natalie'
+    MAREK = 'Marek'
+    NATALIA = 'Natalia'
     JOANNA = 'Joanna'
 
     SELLER = [
-        (MARK, 'Mark'),
-        (NATALIE, 'Natalie'),
+        (MAREK, 'Marek'),
+        (NATALIA, 'Natalia'),
         (JOANNA, 'Joanna'),
     ]
 

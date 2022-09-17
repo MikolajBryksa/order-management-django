@@ -1,22 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Menu</h2>
+<h2 style="text-transform: capitalize">
+{% if user.username %}
+    {{ user.username }}
+{% else %}
+    Menu
+{% endif %}
+</h2>
 
-<a href='/'><button type="button">Login</button></a>
+{% if user.username %}
+    <a href='{% url "logout" %}'><button type="button">Logout</button></a>
+{% else %}
+    <a href='{% url "login" %}'><button type="button">Login</button></a>
+{% endif %}
+
+<a href='/user_list/'><button type="button">Users</button></a>
+<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
+
 </br></br>
+
     <h3>Opis projektu</h3>
-    Mój system usprawnia komunikację pomiędzy działami firmy: handlowym, graficznym i produkcyjnym.</br>
+    System usprawnia komunikację pomiędzy działami firmy: handlowym, graficznym i produkcyjnym.</br>
     Jego głównym celem jest eliminacja niedomówień i pomyłek poprzez weryfikowanie przekazywanych danych.</br>
     Zastępuje ręczne uzupełnianie arkuszy kalkulacyjnych i plików tekstowych oraz drukowanie zleceń.</br>
     Dzięki niemu wszystkie niezbędne informacje dotyczące zlecenia są w jednym miejscu.</br>
     </br>
+
     <h3>Funkcjonalności</h3>
     Podstawową funkcją systemu jest tworzenie zamówień i monitorowanie ich statusu.</br>
     Status informuje na jakim obecnie etapie realizacji jest zamówienie.</br>
     Do każdego zamówienia można dopisać produkty i uwagi.</br>
     Produkty różnią się ilością danych, np. płaskie obiekty nie mają informacji o głębokości.</br>
     Do każdego produktu dopisywane są czynności produkcyjne konieczne do jego wykonania.</br>
-
 
 {% endblock %}

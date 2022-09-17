@@ -19,6 +19,8 @@ from django.urls import path
 from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDelete, \
     ItemAdd, ItemEdit, ItemDelete, CommentAdd, CommentEdit, CommentDelete, Menu
 
+from users.views import UserList, Login, Logout, UserAdd
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', OrderList.as_view(), name='order_list'),
@@ -36,5 +38,10 @@ urlpatterns = [
     path('comment_add/', CommentAdd.as_view(), name='comment_add'),
     path('comment_edit/<pk>/', CommentEdit.as_view(), name="comment_edit"),
     path('comment_delete/<pk>/', CommentDelete.as_view(), name="comment_delete"),
+
+    path('user_list/', UserList.as_view(), name="user_list"),
+    path('user_add/', UserAdd.as_view(), name="user_add"),
+    path('login/', Login.as_view(), name="login"),
+    path('logout/', Logout.as_view(), name="logout"),
 
 ]

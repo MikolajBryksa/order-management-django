@@ -2,123 +2,125 @@
 {% block content %}
 
 <h2>Order details</h2>
+
 {{ order.customer }}
+
 </br></br>
+
+{% if perms.orders.delete_order %}
 <a href='/item_add/'><button type="button">Add product</button></a>
-<a href='/'><button type="button">Back</button></a>
+{% endif %}
+
 <a href='/comment_add/'><button type="button">Comment</button></a>
+<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
+
 </br></br>
 
-    {% for comment in comments %}
-        {% if comment != None %}
-            <a href='/comment_edit/{{ comment.pk }}'>{{ comment.date|date:'H:i' }}: {{ comment.message }}</a>
-            </br></br>
-        {%  endif %}
-    {% endfor %}
+{% for comment in comments %}
+    {% if comment != None %}
+        <a href='/comment_edit/{{ comment.pk }}'>{{ comment.date|date:'H:i' }}: {{ comment.message }}</a></br></br>
+    {%  endif %}
+{% endfor %}
 
-    {% for item in items %}
-    <div class="item">
-    <table class="table">
-        <thead>
-        <tr>
-            <th data-label="name">{{ item.name }}</th>
-            <th><a href='/item_edit/{{ item.pk }}'><button>Edit product</button></a></th>
-        </tr>
-        </thead>
+{% for item in items %}
+<div class="item">
+<table class="table">
 
-        <tr>
-            <td>Material:</td>
-            <td data-label="material">{{ item.material }}</td>
-        </tr>
+    <thead>
+    <tr>
+        <th data-label="name" colspan="2">{{ item.name }}</th>
+    </tr>
+    </thead>
 
-         <tr>
-            <td>Thickness:</td>
-            <td data-label="thickness">{{ item.thickness }} mm</td>
-        </tr>
+    <tr>
+        <td>Material:</td>
+        <td data-label="material">{{ item.material }}</td>
+    </tr>
 
-        <tr>
-            <td>Color:</td>
-            <td data-label="color">{{ item.color }}</td>
-        </tr>
+     <tr>
+        <td>Thickness:</td>
+        <td data-label="thickness">{{ item.thickness }} mm</td>
+    </tr>
 
-        {% if item.dimensions != None %}
-        <tr>
-            <td>Dimensions:</td>
-            <td data-label="dimensions">{{ item.dimensions }}</td>
-        </tr>
-        {%  endif %}
+    <tr>
+        <td>Color:</td>
+        <td data-label="color">{{ item.color }}</td>
+    </tr>
 
-        <tr>
-            <td>Width:</td>
-            <td data-label="width">{{ item.width }} mm</td>
-        </tr>
+    {% if item.dimensions != None %}
+    <tr>
+        <td>Dimensions:</td>
+        <td data-label="dimensions">{{ item.dimensions }}</td>
+    </tr>
+    {%  endif %}
 
-        <tr>
-            <td>Height:</td>
-            <td data-label="height">{{ item.height }} mm</td>
-        </tr>
+    <tr>
+        <td>Width:</td>
+        <td data-label="width">{{ item.width }} mm</td>
+    </tr>
 
-        {% if item.depth != None %}
-        <tr>
-            <td>Depth:</td>
-            <td data-label="depth">{{ item.depth }} mm</td>
-        </tr>
-        {%  endif %}
+    <tr>
+        <td>Height:</td>
+        <td data-label="height">{{ item.height }} mm</td>
+    </tr>
 
-        <tr>
-            <td>Fastening:</td>
-            <td data-label="fastening">{{ item.fastening }}</td>
-        </tr>
+    {% if item.depth != None %}
+    <tr>
+        <td>Depth:</td>
+        <td data-label="depth">{{ item.depth }} mm</td>
+    </tr>
+    {%  endif %}
 
-        {% if item.hole != None %}
-        <tr>
-            <td>Hole:</td>
-            <td data-label="hole">{{ item.hole}} mm</td>
-        </tr>
-        {%  endif %}
+    <tr>
+        <td>Fastening:</td>
+        <td data-label="fastening">{{ item.fastening }}</td>
+    </tr>
 
-        {% if item.rounding != None %}
-        <tr>
-            <td>Rounding:</td>
-            <td data-label="rounding">{{ item.rounding}}</td>
-        </tr>
-        {%  endif %}
+    {% if item.hole != None %}
+    <tr>
+        <td>Hole:</td>
+        <td data-label="hole">{{ item.hole}} mm</td>
+    </tr>
+    {%  endif %}
 
-        {% if item.mark != None %}
-        <tr>
-            <td>Mark:</td>
-            <td data-label="mark">{{ item.mark}}</td>
-        </tr>
-        {%  endif %}
+    {% if item.rounding != None %}
+    <tr>
+        <td>Rounding:</td>
+        <td data-label="rounding">{{ item.rounding}}</td>
+    </tr>
+    {%  endif %}
 
-        <tr>
-            <td>Quantity:</td>
-            <td data-label="quantity">{{ item.quantity }}</td>
-        </tr>
+    {% if item.mark != None %}
+    <tr>
+        <td>Mark:</td>
+        <td data-label="mark">{{ item.mark}}</td>
+    </tr>
+    {%  endif %}
 
-        {% if item.description %}
-        <tr><td data-label="description" colspan="2" class="description">{{ item.description }}</td></tr>
-        {%  endif %}
+    <tr>
+        <td>Quantity:</td>
+        <td data-label="quantity">{{ item.quantity }}</td>
+    </tr>
 
-        <tr><th colspan="2">
-            {% for actions in item.actions.all %}
-                {{ actions.name }}
-            {% endfor %}
-        </th></tr>
+    {% if item.description %}
+    <tr><td data-label="description" colspan="2" class="description">{{ item.description }}</td></tr>
+    {%  endif %}
 
-{#        {% for instance in data %}#}
-{#            {% for field, value in instance.fields.items %}#}
-{#                {% if value != None and field != "name" and field != "description" %}#}
-{#                    <tr>#}
-{#                        <td>{{ field }}</td>#}
-{#                        <td data-label="{{ value }}">{{ value }}</td>#}
-{#                    </tr>#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{#        {% endfor %}#}
+    <tr><th colspan="2">
+        {% for actions in item.actions.all %}
+            {{ actions.name }}
+        {% endfor %}
+    </th></tr>
 
-    </table></br>
-    </div>
-    {% endfor %}
+    {% if perms.orders.change_item %}
+    <tr>
+        <td colspan="2"><a href='/item_edit/{{ item.pk }}'><button>Edit product</button></a></td>
+    </tr>
+    {% endif %}
+
+
+</table></br>
+</div>
+{% endfor %}
 
 {% endblock %}
