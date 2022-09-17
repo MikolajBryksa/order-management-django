@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
 <h2>Order Management System</h2>
+
 <table class="table">
 
   <thead>
@@ -12,11 +13,14 @@
       <th scope="col">Designer</th>
       <th scope="col">Status</th>
       <th scope="col">
+        {% if perms.orders.add_order %}
             <a href='/order_add/'><button>Add</button></a>
+        {% endif %}
             <a href='/menu/'><button>Menu</button></a>
       </th>
     </tr>
   </thead>
+
   <tbody>
     {% for order in orders %}
     <tr>
@@ -29,11 +33,10 @@
           <a href='/order_edit/{{ order.pk }}'><button>Edit</button></a>
           <a href='/order_details/{{ order.pk}}'><button>Details</button></a>
       </td>
-
     </tr>
     {% endfor %}
-
   </tbody>
+
 </table>
 
 {% endblock %}

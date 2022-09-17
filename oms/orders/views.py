@@ -3,8 +3,8 @@ from django.views import View
 from .models import Order, Item, Comment
 from .forms import OrderAddForm, ItemAddForm, CommentAddForm
 from django.urls import reverse_lazy
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
 class OrderList(View):
@@ -28,58 +28,67 @@ class OrderDetails(View):
         return render(request, 'orders/order_details.html', context)
 
 
-class OrderAdd(CreateView):
+class OrderAdd(PermissionRequiredMixin, CreateView):
+    permission_required = 'orders.add_order'
     model = Order
     form_class = OrderAddForm
     template_name = 'orders/order_add.html'
     success_url = reverse_lazy('order_list')
 
 
-class OrderEdit(UpdateView):
+class OrderDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'orders.delete_order'
+    model = Order
+    success_url = reverse_lazy('order_list')
+
+
+class OrderEdit(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
     model = Order
     form_class = OrderAddForm
     template_name_suffix = '_edit'
     success_url = reverse_lazy('order_list')
 
 
-class OrderDelete(DeleteView):
-    model = Order
-    success_url = reverse_lazy('order_list')
-
-
-class ItemAdd(CreateView):
+class ItemAdd(PermissionRequiredMixin, CreateView):
+    permission_required = 'orders.add_item'
     model = Item
     form_class = ItemAddForm
     template_name = 'orders/item_add.html'
     success_url = reverse_lazy('order_list')
 
 
-class ItemEdit(UpdateView):
+class ItemDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'orders.delete_item'
+    model = Item
+    success_url = reverse_lazy('order_list')
+
+
+class ItemEdit(PermissionRequiredMixin, UpdateView):
+    permission_required = 'orders.change_item'
     model = Item
     form_class = ItemAddForm
     template_name_suffix = '_edit'
     success_url = reverse_lazy('order_list')
 
 
-class ItemDelete(DeleteView):
-    model = Item
-    success_url = reverse_lazy('order_list')
-
-
-class CommentAdd(CreateView):
+class CommentAdd(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
     model = Comment
     form_class = CommentAddForm
     template_name = 'orders/comment_add.html'
     success_url = reverse_lazy('order_list')
 
 
-class CommentEdit(UpdateView):
+class CommentDelete(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
     model = Comment
-    form_class = CommentAddForm
-    template_name_suffix = '_edit'
     success_url = reverse_lazy('order_list')
 
 
-class CommentDelete(DeleteView):
+class CommentEdit(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
     model = Comment
+    form_class = CommentAddForm
+    template_name_suffix = '_edit'
     success_url = reverse_lazy('order_list')
