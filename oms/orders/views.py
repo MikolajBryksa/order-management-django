@@ -57,6 +57,11 @@ class ItemAdd(PermissionRequiredMixin, CreateView):
     template_name = 'orders/item_add.html'
     success_url = reverse_lazy('order_list')
 
+    def get_initial(self):
+        order_pk = self.kwargs["order_pk"]
+        data = super().get_initial()
+        data["order"] = Order.objects.get(pk=order_pk)
+        return data
 
 class ItemDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'orders.delete_item'
@@ -78,6 +83,12 @@ class CommentAdd(LoginRequiredMixin, CreateView):
     form_class = CommentAddForm
     template_name = 'orders/comment_add.html'
     success_url = reverse_lazy('order_list')
+
+    def get_initial(self):
+        order_pk = self.kwargs["order_pk"]
+        data = super().get_initial()
+        data["order"] = Order.objects.get(pk=order_pk)
+        return data
 
 
 class CommentDelete(LoginRequiredMixin, DeleteView):
