@@ -3,6 +3,8 @@
 
 <h2>Add item</h2>
 
+{{  order.customer }}
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -11,5 +13,6 @@
 <button type="submit">Save</button>
 <button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
 </form>
+</br>
 
 {% endblock %}

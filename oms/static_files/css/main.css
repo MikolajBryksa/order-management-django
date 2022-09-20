@@ -37,7 +37,7 @@ table tr {
 
 table th,
 table td {
-    height: 4em;
+    height: 3.5em;
     /*padding: .5em;*/
     text-align: center;
 }
@@ -151,4 +151,9 @@ button:hover {
     font-size: 16px;
     padding: 5px;
     width: 400px;
+}
+
+mark {
+  background-color: white;
+  color: var(--light);
 }

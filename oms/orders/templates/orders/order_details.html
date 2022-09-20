@@ -8,10 +8,10 @@
 </br></br>
 
 {% if perms.orders.delete_order %}
-<a href='/item_add/'><button type="button">Add product</button></a>
+<a href='/item_add/{{ order.pk }}/'><button type="button">Add product</button></a>
 {% endif %}
 
-<a href='/comment_add/'><button type="button">Comment</button></a>
+<a href='/comment_add/{{ order.pk }}/'><button type="button">Comment</button></a>
 <button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
 
 </br></br>

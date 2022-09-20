@@ -3,6 +3,7 @@ from django.db import models
 
 class Order(models.Model):
     # Status
+    VALUATION = 'Valuation'
     NEW = 'New'
     URGENT = 'Urgent'
     DRAWING = 'Drawing'
@@ -16,6 +17,7 @@ class Order(models.Model):
     SENT = 'Sent'
 
     STATUS = [
+        (VALUATION, 'Valuation'),
         (NEW, 'New'),
         (URGENT, 'Urgent'),
         (DRAWING, 'Drawing'),
@@ -52,8 +54,8 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     seller = models.CharField(max_length=20, choices=SELLER)
     customer = models.EmailField(max_length=260)
-    designer = models.CharField(max_length=20, choices=DESIGNER)
-    status = models.CharField(max_length=20, choices=STATUS, default=NEW)
+    designer = models.CharField(max_length=20, choices=DESIGNER, default=MIKI)
+    status = models.CharField(max_length=20, choices=STATUS, default=VALUATION)
 
     class Meta:
         verbose_name = "Order"
@@ -79,7 +81,9 @@ class Action(models.Model):
     name = models.CharField(max_length=30)
     translation = models.CharField(max_length=30)
     sequence = models.IntegerField()
-    ordering = ['sequence']
+
+    class Meta:
+        ordering = ['sequence']
 
     def __str__(self):
         return self.name
@@ -89,14 +93,32 @@ class Item(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     # Name
-    CARD = 'Card'
-    CONTAINER = 'Container'
-    SIGNBOARD = 'Signboard'
+    PREFAB = 'Prefab'
+    IDENTIFIERS = "Identifiers"
+    NUMBERS = 'Numbers'
+    COVER = 'Covers'
+    DIPLOMAS = 'Diplomas'
+    STENCIL = 'Stencil'
+    PLEXIGLASS = "Plexiglass"
+    CONTAINER = "Container"
+    BOARD = "Board"
+    STATUETTES = "Statuettes"
+    PLATES = "Plates"
+    LETTERS = "Letters"
 
     NAME = [
-        (CARD, 'Card'),
-        (CONTAINER, 'Container'),
-        (SIGNBOARD, 'Signboard'),
+        (PREFAB, 'Prefab'),
+        (IDENTIFIERS, "Identifiers"),
+        (NUMBERS, 'Numbers'),
+        (COVER, 'Covers'),
+        (DIPLOMAS, 'Diplomas'),
+        (STENCIL, 'Stencil'),
+        (PLEXIGLASS, "Plexiglass"),
+        (CONTAINER, "Container"),
+        (BOARD, "Board"),
+        (STATUETTES, "Statuettes"),
+        (PLATES, "Plates"),
+        (LETTERS, "Letters"),
     ]
 
     # Material
@@ -104,7 +126,7 @@ class Item(models.Model):
     LAMINATE = 'Laminate'
     DIBOND = 'Dibond'
     POLYCARBONATE = 'Polycarbonate'
-    PLEXI = 'Plexi'
+    PLEXIGLASS = 'Plexiglass'
     CUSTOM = 'Custom'
 
     MATERIAL = [
@@ -112,7 +134,7 @@ class Item(models.Model):
         (LAMINATE, 'Laminate'),
         (DIBOND, 'Dibond'),
         (POLYCARBONATE, 'Polycarbonate'),
-        (PLEXI, 'Plexi'),
+        (PLEXIGLASS, 'Plexiglass'),
         (CUSTOM, 'Custom'),
     ]
 

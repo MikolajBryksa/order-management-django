@@ -28,16 +28,16 @@ urlpatterns = [
     path('order_details/<int:order_pk>/', OrderDetails.as_view(), name='order_details'),
 
     path('order_add/', OrderAdd.as_view(), name='order_add'),
-    path('order_edit/<pk>/', OrderEdit.as_view(), name="order_edit"),
-    path('order_delete/<pk>/', OrderDelete.as_view(), name="order_delete"),
+    path('order_edit/<int:pk>/', OrderEdit.as_view(), name="order_edit"),
+    path('order_delete/<int:pk>/', OrderDelete.as_view(), name="order_delete"),
 
-    path('item_add/', ItemAdd.as_view(), name='item_add'),
-    path('item_edit/<pk>/', ItemEdit.as_view(), name="item_edit"),
-    path('item_delete/<pk>/', ItemDelete.as_view(), name="item_delete"),
+    path('item_add/<int:order_pk>/', ItemAdd.as_view(), name='item_add'),
+    path('item_edit/<int:pk>/', ItemEdit.as_view(), name="item_edit"),
+    path('item_delete/<int:pk>/', ItemDelete.as_view(), name="item_delete"),
 
-    path('comment_add/', CommentAdd.as_view(), name='comment_add'),
-    path('comment_edit/<pk>/', CommentEdit.as_view(), name="comment_edit"),
-    path('comment_delete/<pk>/', CommentDelete.as_view(), name="comment_delete"),
+    path('comment_add/<int:order_pk>/', CommentAdd.as_view(), name='comment_add'),
+    path('comment_edit/<int:pk>/', CommentEdit.as_view(), name="comment_edit"),
+    path('comment_delete/<int:pk>/', CommentDelete.as_view(), name="comment_delete"),
 
     path('user_list/', UserList.as_view(), name="user_list"),
     path('user_add/', UserAdd.as_view(), name="user_add"),

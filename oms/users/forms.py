@@ -32,15 +32,18 @@ class UserAddForm(forms.ModelForm):
         fields = (
             'username',
             'email',
+            'groups',
         )
 
         help_texts = {
-            'username': ""
+            'username': "",
+            'groups': "",
         }
 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'custom-selector'}),
             'email': forms.TextInput(attrs={'class': 'custom-selector'}),
+            'groups': forms.Select(attrs={'class': 'custom-selector'}),
         }
 
     def clean(self):
