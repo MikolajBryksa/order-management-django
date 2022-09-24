@@ -1,6 +1,6 @@
 from .forms import LoginForm, UserAddForm
 from django.urls import reverse_lazy
-from django.views.generic import FormView, CreateView, ListView, RedirectView
+from django.views.generic import FormView, CreateView, ListView, RedirectView, DeleteView, UpdateView
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
@@ -46,14 +46,16 @@ class UserAdd(PermissionRequiredMixin, CreateView):
         self.object.save()
         return response
 
-# class SetPass(UpdateView):
-#     template_name = 'users/user_login.html'
-#     model = User
-#     fields = ['username', 'password']
-#     success_url = reverse_lazy('login')
-#
-#     def form_valid(self, form):
-#         response = super().form_valid(form)
-#         self.object.set_password(form.cleaned_data['password'])
-#         self.object.save()
-#         return super().form_valid(form)
+
+class UserDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'users.delete_user'
+    model = User
+    success_url = reverse_lazy('user_list')
+
+
+class UserEdit(PermissionRequiredMixin, UpdateView):
+    permission_required = 'users.change_user'
+    model = User
+    form_class = UserAddForm
+    template_name_suffix = '_edit'
+    success_url = reverse_lazy('user_list')

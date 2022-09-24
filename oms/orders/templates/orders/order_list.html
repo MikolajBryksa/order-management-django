@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Order Management System</h2>
+{% load i18n %}
+<h2></h2>
 
 <table class="table">
 
   <thead>
     <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Seller</th>
-      <th scope="col">Customer</th>
-      <th scope="col">Designer</th>
+      <th scope="col">{%  trans "Date" %}</th>
+      <th scope="col">{%  trans "Seller" %}</th>
+      <th scope="col">{%  trans "Customer" %}</th>
+      <th scope="col">{%  trans "Designer" %}</th>
       <th scope="col">Status</th>
       <th scope="col">
         {% if perms.orders.add_order %}
-            <a href='/order_add/'><button>Add</button></a>
+            <a href='/order_add/'><button class="icon"><i class="bi-plus"></i></button></a>
         {% endif %}
-            <a href='/menu/'><button>Menu</button></a>
+            <a href='/order_add/'><button class="icon"><i class="bi-search"></i></button></a>
+
       </th>
     </tr>
   </thead>
@@ -30,8 +31,8 @@
       <td data-label="designer">{{ order.designer }}</td>
       <td data-label="status">{{ order.status }}</td>
       <td>
-          <a href='/order_edit/{{ order.pk }}'><button>Edit</button></a>
-          <a href='/order_details/{{ order.pk}}'><button>Details</button></a>
+          <a href='/order_edit/{{ order.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a>
+          <a href='/order_details/{{ order.pk}}'><button class="icon"><i class="bi-list"></i></button></a>
       </td>
     </tr>
     {% endfor %}

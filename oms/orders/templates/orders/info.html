@@ -1,27 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load i18n %}
 
-<h2 style="text-transform: capitalize">
-{% if user.username %}
-    {{ user.username }}
-{% else %}
-    Menu
-{% endif %}
-</h2>
-
-{% if user.username %}
-    <a href='{% url "logout" %}'><button type="button">Logout</button></a>
-{% else %}
-    <a href='{% url "login" %}'><button type="button">Login</button></a>
-{% endif %}
-
-<a href='/user_list/'><button type="button">Users</button></a>
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
-
-</br></br>
-
-    <h3>Opis projektu</h3>
-    <mark>Aplikacja webowa do zarządzania zamówieniami</mark></br>
+    <h2>{%  trans "Project description" %}</h2>
+    <mark>{%  trans "Web application for managing orders" %}</mark></br>
     </br>
     Wykonałem ją dla dotychczasowego pracodawcy.</br>
     Zastępuje ręczne uzupełnianie arkuszy oraz drukowanie zleceń.</br>

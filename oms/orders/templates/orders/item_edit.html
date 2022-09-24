@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Edit item</h2>
+{% load i18n %}
+<h2>{%  trans "Edit item" %}</h2>
 
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
 </br>
-<button type="submit">Save</button>
-<a href='/item_delete/{{ item.pk }}'><button type="button">Delete</button></a>
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
-</form>
 
+<button type="submit" class="icon"><i class="bi-check"></i></button></a>
+
+{% if perms.orders.delete_item %}
+<a href='/item_delete/{{ item.pk }}'><button type="button" class="icon"><i class="bi-trash3"></i></button></a>
+{% endif %}
+
+</form>
 </br></br>
 {% endblock %}

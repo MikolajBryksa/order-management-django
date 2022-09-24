@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Order, Item, Comment
 from .forms import OrderAddForm, ItemAddForm, CommentAddForm
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, RedirectView, DeleteView, UpdateView
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
@@ -14,9 +14,18 @@ class OrderList(View):
         return render(request, 'orders/order_list.html', context)
 
 
-class Menu(View):
+class Stats(View):
     def get(self, request):
-        return render(request, 'orders/menu.html')
+        return render(request, 'orders/stats.html')
+
+
+class Info(View):
+    def get(self, request):
+        return render(request, 'orders/info.html')
+
+
+# class Language(View):
+#     url = reverse_lazy('order_list')
 
 
 class OrderDetails(View):
@@ -55,7 +64,7 @@ class ItemAdd(PermissionRequiredMixin, CreateView):
     model = Item
     form_class = ItemAddForm
     template_name = 'orders/item_add.html'
-    success_url = reverse_lazy('order_list')
+    success_url = "/order_details/{order_id}"
 
     def get_initial(self):
         order_pk = self.kwargs["order_pk"]
@@ -66,7 +75,7 @@ class ItemAdd(PermissionRequiredMixin, CreateView):
 class ItemDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'orders.delete_item'
     model = Item
-    success_url = reverse_lazy('order_list')
+    success_url = "/order_details/{order_id}"
 
 
 class ItemEdit(PermissionRequiredMixin, UpdateView):
@@ -74,7 +83,7 @@ class ItemEdit(PermissionRequiredMixin, UpdateView):
     model = Item
     form_class = ItemAddForm
     template_name_suffix = '_edit'
-    success_url = reverse_lazy('order_list')
+    success_url = "/order_details/{order_id}"
 
 
 class CommentAdd(LoginRequiredMixin, CreateView):
@@ -82,7 +91,7 @@ class CommentAdd(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentAddForm
     template_name = 'orders/comment_add.html'
-    success_url = reverse_lazy('order_list')
+    success_url = "/order_details/{order_id}"
 
     def get_initial(self):
         order_pk = self.kwargs["order_pk"]
@@ -94,7 +103,7 @@ class CommentAdd(LoginRequiredMixin, CreateView):
 class CommentDelete(LoginRequiredMixin, DeleteView):
     login_url = '/login/'
     model = Comment
-    success_url = reverse_lazy('order_list')
+    success_url = "/order_details/{order_id}"
 
 
 class CommentEdit(LoginRequiredMixin, UpdateView):
@@ -102,4 +111,4 @@ class CommentEdit(LoginRequiredMixin, UpdateView):
     model = Comment
     form_class = CommentAddForm
     template_name_suffix = '_edit'
-    success_url = reverse_lazy('order_list')
+    success_url = "/order_details/{order_id}"

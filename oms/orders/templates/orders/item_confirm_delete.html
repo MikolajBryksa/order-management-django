@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Delete item</h2>
+{% load i18n %}
+<h2>{%  trans "Delete item" %}</h2>
 
 {{ item.name }}
 </br></br>
@@ -10,8 +10,8 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-<button type="submit">Delete</button>
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
+<button type="submit" class="icon"><i class="bi-check"></i></button></a>
+
 </form>
 
 {% endblock %}

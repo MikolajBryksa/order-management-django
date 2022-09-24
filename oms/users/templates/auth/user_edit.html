@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load i18n %}
-<h2>{%  trans "Edit comment" %}</h2>
+<h2>{%  trans "Edit user" %}</h2>
 
 <form action="" method="post">
     {% csrf_token %}
@@ -10,8 +10,8 @@
 </br>
 <button type="submit" class="icon"><i class="bi-check"></i></button></a>
 
-{% if perms.orders.delete_comment %}
-<a href='/comment_delete/{{ comment.pk }}'><button type="button" class="icon"><i class="bi-trash3"></i></button></a>
+{% if perms.orders.delete_order %}
+<a href='/user_delete/{{ user.pk }}'><button type="button" class="icon"><i class="bi-trash3"></i></button></a>
 {% endif %}
 
 </form>

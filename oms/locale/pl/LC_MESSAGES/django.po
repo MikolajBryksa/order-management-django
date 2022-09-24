@@ -1,0 +1,396 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-22 18:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: orders/models.py:6 orders/models.py:19
+msgid "Valuation"
+msgstr "Wycena"
+
+#: orders/models.py:7 orders/models.py:20
+msgid "New"
+msgstr "Nowe"
+
+#: orders/models.py:8 orders/models.py:21
+msgid "Urgent"
+msgstr "Pilne"
+
+#: orders/models.py:9 orders/models.py:22
+msgid "Drawing"
+msgstr "Rysowane"
+
+#: orders/models.py:10 orders/models.py:23
+msgid "Incomplete"
+msgstr "Niekompletne"
+
+#: orders/models.py:11 orders/models.py:24
+#, fuzzy
+#| msgid "Designer"
+msgid "Designed"
+msgstr "Zaprojektowane"
+
+#: orders/models.py:12 orders/models.py:25
+msgid "Evaluation"
+msgstr "Oceniane"
+
+#: orders/models.py:13 orders/models.py:26
+msgid "Improvement"
+msgstr "Poprawka"
+
+#: orders/models.py:14 orders/models.py:27
+msgid "Accepted"
+msgstr "Zaakceptowane"
+
+#: orders/models.py:15 orders/models.py:28
+#, fuzzy
+#| msgid "Project description"
+msgid "Production"
+msgstr "Produkowane"
+
+#: orders/models.py:16 orders/models.py:29
+msgid "Packed"
+msgstr "Zapakowane"
+
+#: orders/models.py:17 orders/models.py:30
+msgid "Sent"
+msgstr "Wysłane"
+
+#: orders/models.py:81 orders/models.py:95
+msgid "Prefab"
+msgstr "Gotowce"
+
+#: orders/models.py:82 orders/models.py:96
+msgid "Identifiers"
+msgstr "Identyfikatory"
+
+#: orders/models.py:83 orders/models.py:97
+msgid "Numbers"
+msgstr "Numerki"
+
+#: orders/models.py:84 orders/models.py:98
+msgid "Covers"
+msgstr "Osłony"
+
+#: orders/models.py:85 orders/models.py:99
+msgid "Diplomas"
+msgstr "Dyplomy"
+
+#: orders/models.py:86 orders/models.py:100
+msgid "Stencil"
+msgstr "Szablon"
+
+#: orders/models.py:87 orders/models.py:101 orders/models.py:114
+#: orders/models.py:122
+msgid "Plexiglass"
+msgstr "Pleksi"
+
+#: orders/models.py:88 orders/models.py:102
+msgid "Container"
+msgstr "Obudowa"
+
+#: orders/models.py:89 orders/models.py:103
+msgid "Board"
+msgstr "Tablica"
+
+#: orders/models.py:90 orders/models.py:104
+msgid "Statuettes"
+msgstr "Statuetki"
+
+#: orders/models.py:91 orders/models.py:105
+msgid "Plates"
+msgstr "Tabliczki"
+
+#: orders/models.py:92 orders/models.py:106
+msgid "Letters"
+msgstr "Litery"
+
+#: orders/models.py:110 orders/models.py:118
+msgid "Aluminium"
+msgstr "Aluminium"
+
+#: orders/models.py:111 orders/models.py:119
+msgid "Laminate"
+msgstr "Laminat"
+
+#: orders/models.py:112 orders/models.py:120
+msgid "Dibond"
+msgstr "Dibond"
+
+#: orders/models.py:113 orders/models.py:121
+msgid "Polycarbonate"
+msgstr "Poliwęglan"
+
+#: orders/models.py:115 orders/models.py:123 orders/models.py:151
+#: orders/models.py:159 orders/models.py:177 orders/models.py:185
+#: orders/models.py:195 orders/models.py:204
+#, fuzzy
+#| msgid "Customer"
+msgid "Custom"
+msgstr "Niestandardowy"
+
+#: orders/models.py:133 orders/models.py:142
+msgid "Other"
+msgstr "Inne"
+
+#: orders/models.py:146 orders/models.py:154
+msgid "Silver"
+msgstr "Srebrny"
+
+#: orders/models.py:147 orders/models.py:155
+msgid "Gold"
+msgstr "Złoty"
+
+#: orders/models.py:148 orders/models.py:156
+msgid "White"
+msgstr "Biały"
+
+#: orders/models.py:149 orders/models.py:157
+msgid "Black"
+msgstr "Czarny"
+
+#: orders/models.py:150 orders/models.py:158
+msgid "Transparent"
+msgstr "Bezbarwny"
+
+#: orders/models.py:163 orders/models.py:167
+msgid "Outside"
+msgstr "Zewnętrzne"
+
+#: orders/models.py:164 orders/models.py:168
+msgid "Inside"
+msgstr "Wewnętrzne"
+
+#: orders/models.py:172 orders/models.py:180
+msgid "Pin"
+msgstr "Pins"
+
+#: orders/models.py:173 orders/models.py:181
+msgid "Magnet"
+msgstr "Magnes"
+
+#: orders/models.py:174 orders/models.py:182
+msgid "Glue"
+msgstr "Klej"
+
+#: orders/models.py:175 orders/models.py:183
+#, fuzzy
+#| msgid "Hole"
+msgid "Holes"
+msgstr "Otwór"
+
+#: orders/models.py:176 orders/models.py:184 orders/models.py:194
+#: orders/models.py:203
+msgid "Without"
+msgstr "Bez"
+
+#: orders/models.py:189 orders/models.py:198
+msgid "Print"
+msgstr "Druk"
+
+#: orders/models.py:190 orders/models.py:199
+msgid "Engraver"
+msgstr "Grawer"
+
+#: orders/models.py:191 orders/models.py:200
+msgid "Foil"
+msgstr "Folia"
+
+#: orders/models.py:192 orders/models.py:201
+msgid "Sticker"
+msgstr "Naklejka"
+
+#: orders/models.py:193 orders/models.py:202
+msgid "Outsource"
+msgstr "Outsourcing"
+
+#: orders/templates/orders/comment_add.html:4
+msgid "Add comment"
+msgstr "Dodaj komentarz"
+
+#: orders/templates/orders/comment_confirm_delete.html:4
+msgid "Delete comment"
+msgstr "Skasuj komentarz"
+
+#: orders/templates/orders/comment_edit.html:4
+msgid "Edit comment"
+msgstr "Edytuj komentarz"
+
+#: orders/templates/orders/info.html:5
+msgid "Project description"
+msgstr "Opis projektu"
+
+#: orders/templates/orders/info.html:6
+msgid "Web application for managing orders"
+msgstr "Aplikacja webowa do zarządzania zamówieniami"
+
+#: orders/templates/orders/item_add.html:4
+msgid "Add item"
+msgstr "Dodaj produkt"
+
+#: orders/templates/orders/item_confirm_delete.html:4
+msgid "Delete item"
+msgstr "Skasuj produkt"
+
+#: orders/templates/orders/item_edit.html:4
+#, fuzzy
+#| msgid "Edit"
+msgid "Edit item"
+msgstr "Edytuj produkt"
+
+#: orders/templates/orders/order_add.html:4
+msgid "Add order"
+msgstr "Dodaj zamówienie"
+
+#: orders/templates/orders/order_confirm_delete.html:4
+msgid "Delete order"
+msgstr "Usuń zamówienie"
+
+#: orders/templates/orders/order_details.html:4
+msgid "Order details"
+msgstr "Szczegóły zamówienia"
+
+#: orders/templates/orders/order_details.html:35
+msgid "Material"
+msgstr "Materiał"
+
+#: orders/templates/orders/order_details.html:40
+msgid "Thickness"
+msgstr "Grubość"
+
+#: orders/templates/orders/order_details.html:45
+msgid "Color"
+msgstr "Kolor"
+
+#: orders/templates/orders/order_details.html:51
+msgid "Dimensions"
+msgstr "Wymiary"
+
+#: orders/templates/orders/order_details.html:57
+msgid "Width"
+msgstr "Szerokość"
+
+#: orders/templates/orders/order_details.html:62
+msgid "Height"
+msgstr "Wysokość"
+
+#: orders/templates/orders/order_details.html:68
+msgid "Depth"
+msgstr "Głębokość"
+
+#: orders/templates/orders/order_details.html:74
+msgid "Fastening"
+msgstr "Mocowanie"
+
+#: orders/templates/orders/order_details.html:80
+msgid "Hole"
+msgstr "Otwór"
+
+#: orders/templates/orders/order_details.html:87
+msgid "Rounding"
+msgstr "Zaokrąglenie"
+
+#: orders/templates/orders/order_details.html:94
+msgid "Mark"
+msgstr "Znakowanie"
+
+#: orders/templates/orders/order_details.html:100
+msgid "Quantity"
+msgstr "Ilość"
+
+#: orders/templates/orders/order_edit.html:4
+msgid "Edit order"
+msgstr "Edytuj zamówienie"
+
+#: orders/templates/orders/order_list.html:10
+msgid "Date"
+msgstr "Data"
+
+#: orders/templates/orders/order_list.html:11
+msgid "Seller"
+msgstr "Handlowiec"
+
+#: orders/templates/orders/order_list.html:12
+msgid "Customer"
+msgstr "Klient"
+
+#: orders/templates/orders/order_list.html:13
+msgid "Designer"
+msgstr "Grafik"
+
+#: orders/templates/orders/stats.html:5
+msgid "Statistics"
+msgstr ""
+
+#: users/templates/auth/user_confirm_delete.html:4
+#, fuzzy
+#| msgid "Delete order"
+msgid "Delete user"
+msgstr "Usuń zamówienie"
+
+#: users/templates/auth/user_edit.html:4
+#, fuzzy
+#| msgid "Edit order"
+msgid "Edit user"
+msgstr "Edytuj zamówienie"
+
+#: users/templates/users/user_add.html:4
+msgid "Add user"
+msgstr "Dodaj użytkownika"
+
+#: users/templates/users/user_list.html:4
+msgid "Users"
+msgstr "Użytkownicy"
+
+#: users/templates/users/user_login.html:13
+msgid "Login"
+msgstr "Zaloguj"
+
+#~ msgid "Save"
+#~ msgstr "Zapisz"
+
+#~ msgid "Back"
+#~ msgstr "Cofnij"
+
+#~ msgid "Delete"
+#~ msgstr "Usuń"
+
+#~ msgid "Logout"
+#~ msgstr "Wyloguj"
+
+#~ msgid "Add product"
+#~ msgstr "Dodaj produkt"
+
+#~ msgid "Comment"
+#~ msgstr "Skomentuj"
+
+#~ msgid "Edit product"
+#~ msgstr "Edytuj produkt"
+
+#~ msgid "Order Management System"
+#~ msgstr "System zarządzania zamówieniami"
+
+#~ msgid "Add"
+#~ msgstr "Dodaj"
+
+#~ msgid "Edit"
+#~ msgstr "Edytuj"
+
+#~ msgid "Details"
+#~ msgstr "Więcej"
