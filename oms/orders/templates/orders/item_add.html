@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Add item</h2>
-
+{% load i18n %}
+<h2>{%  trans "Add item" %}</h2>
 {{  order.customer }}
-
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
 </br>
-<button type="submit">Save</button>
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
+<button type="submit" class="icon"><i class="bi-check"></i></button></a>
+
 </form>
 </br>
 

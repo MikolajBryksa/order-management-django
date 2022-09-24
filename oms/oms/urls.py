@@ -14,17 +14,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext as _
 
 from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDelete, \
-    ItemAdd, ItemEdit, ItemDelete, CommentAdd, CommentEdit, CommentDelete, Menu
+    ItemAdd, ItemEdit, ItemDelete, CommentAdd, CommentEdit, CommentDelete, Info, Stats
 
-from users.views import UserList, Login, Logout, UserAdd
+from users.views import UserList, Login, Logout, UserAdd, UserEdit, UserDelete
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
+]
+
+# Language
+urlpatterns += i18n_patterns(
     path('', OrderList.as_view(), name='order_list'),
-    path('menu/', Menu.as_view(), name='menu'),
+
+    path('stats/', Stats.as_view(), name='stats'),
+    path('info/', Info.as_view(), name='info'),
     path('order_details/<int:order_pk>/', OrderDetails.as_view(), name='order_details'),
 
     path('order_add/', OrderAdd.as_view(), name='order_add'),
@@ -41,7 +52,10 @@ urlpatterns = [
 
     path('user_list/', UserList.as_view(), name="user_list"),
     path('user_add/', UserAdd.as_view(), name="user_add"),
+    path('user_edit/<int:pk>/', UserEdit.as_view(), name="user_edit"),
+    path('user_delete/<int:pk>/', UserDelete.as_view(), name="user_delete"),
+
     path('login/', Login.as_view(), name="login"),
     path('logout/', Logout.as_view(), name="logout"),
 
-]
+)

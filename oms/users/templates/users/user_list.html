@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Users</h2>
+{% load i18n %}
+<h2>{%  trans "Users" %}</h2>
 
 {% if perms.users.add_user %}
-<a href='/user_add/'><button type="button">Add</button></a>
+<a href='/user_add/'><button type="button" class="icon"><i class="bi-person-plus"></i></button></a>
 {% endif %}
 
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
 <h2></h2>
 
 <div class="item">
@@ -22,7 +21,7 @@
 
     {% for user in users %}
         <tr>
-            <td data-label="name">{{ user.username }}</td>
+            <td data-label="name"><a href='/user_edit/{{ user.pk }}'>{{ user.username }}</a></td>
             <td data-label="group">{{ user.groups.all.0 }}</td>
         </tr>
     {% endfor %}

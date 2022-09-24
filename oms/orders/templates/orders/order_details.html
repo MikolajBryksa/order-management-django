@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Order details</h2>
+{% load i18n %}
+<h2>{%  trans "Order details" %}</h2>
 
 {{ order.customer }}
 
 </br></br>
 
-{% if perms.orders.delete_order %}
-<a href='/item_add/{{ order.pk }}/'><button type="button">Add product</button></a>
+{% if perms.orders.add_item %}
+<a href='/item_add/{{ order.pk }}/'><button class="icon"><i class="bi-plus"></i></button></a>
 {% endif %}
+<a href='/comment_add/{{ order.pk }}/'><button class="icon"><i class="bi-chat"></i></button></a>
 
-<a href='/comment_add/{{ order.pk }}/'><button type="button">Comment</button></a>
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
 
 </br></br>
 
@@ -33,72 +32,72 @@
     </thead>
 
     <tr>
-        <td>Material:</td>
+        <td>{%  trans "Material" %}:</td>
         <td data-label="material">{{ item.material }}</td>
     </tr>
 
      <tr>
-        <td>Thickness:</td>
+        <td>{%  trans "Thickness" %}:</td>
         <td data-label="thickness">{{ item.thickness }} mm</td>
     </tr>
 
     <tr>
-        <td>Color:</td>
+        <td>{%  trans "Color" %}:</td>
         <td data-label="color">{{ item.color }}</td>
     </tr>
 
     {% if item.dimensions != None %}
     <tr>
-        <td>Dimensions:</td>
+        <td>{%  trans "Dimensions" %}:</td>
         <td data-label="dimensions">{{ item.dimensions }}</td>
     </tr>
     {%  endif %}
 
     <tr>
-        <td>Width:</td>
+        <td>{%  trans "Width" %}:</td>
         <td data-label="width">{{ item.width }} mm</td>
     </tr>
 
     <tr>
-        <td>Height:</td>
+        <td>{%  trans "Height" %}:</td>
         <td data-label="height">{{ item.height }} mm</td>
     </tr>
 
     {% if item.depth != None %}
     <tr>
-        <td>Depth:</td>
+        <td>{%  trans "Depth" %}:</td>
         <td data-label="depth">{{ item.depth }} mm</td>
     </tr>
     {%  endif %}
 
     <tr>
-        <td>Fastening:</td>
+        <td>{%  trans "Fastening" %}:</td>
         <td data-label="fastening">{{ item.fastening }}</td>
     </tr>
 
     {% if item.hole != None %}
     <tr>
-        <td>Hole:</td>
+        <td>{%  trans "Hole" %}:</td>
         <td data-label="hole">{{ item.hole}} mm</td>
     </tr>
     {%  endif %}
 
     {% if item.rounding != None %}
     <tr>
-        <td>Rounding:</td>
+        <td>{%  trans "Rounding" %}:</td>
         <td data-label="rounding">{{ item.rounding}}</td>
     </tr>
     {%  endif %}
 
     {% if item.mark != None %}
     <tr>
-        <td>Mark:</td>
+        <td>{%  trans "Mark" %}:</td>
         <td data-label="mark">{{ item.mark}}</td>
     </tr>
     {%  endif %}
 
     <tr>
-        <td>Quantity:</td>
+        <td>{%  trans "Quantity" %}:</td>
         <td data-label="quantity">{{ item.quantity }}</td>
     </tr>
 
@@ -114,7 +113,7 @@
 
     {% if perms.orders.change_item %}
     <tr>
-        <td colspan="2"><a href='/item_edit/{{ item.pk }}'><button>Edit product</button></a></td>
+        <td colspan="2"><a href='/item_edit/{{ item.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a></td>
     </tr>
     {% endif %}
 

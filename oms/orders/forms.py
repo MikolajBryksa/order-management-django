@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order, Item, Comment, Action
+from .models import Order, Item, Comment
 
 
 class OrderAddForm(forms.ModelForm):

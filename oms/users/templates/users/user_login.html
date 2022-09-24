@@ -1,15 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load i18n %}
 
-<h2>Login</h2>
+{# Logout #}
+{% if user.username %}
+    <h2 style="text-transform: capitalize">{{ user.username }}</h2>
+    <a href='{% url "logout" %}'><button type="button" class="icon"><i class="bi-box-arrow-left"></i></button></a>
+    <a href='/user_list/'><button type="button" class="icon"><i class="bi-people"></i></button></a>
 
-<form action="" method="post">
+{# Login #}
+{% else %}
+    <h2>{%  trans "Login" %}</h2>
+    <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
-</br>
-<button type="submit">Login</button>
-<button type="button" value="Previous Page" onClick="javascript:history.go(-1);">Back</button>
+    </br>
+    <button type="submit" class="icon"><i class="bi-check"></i></button></a>
+    <a href='/user_list/'><button type="button" class="icon"><i class="bi-people"></i></button></a>
+
 </form>
+{% endif %}
+
 
 {% endblock %}

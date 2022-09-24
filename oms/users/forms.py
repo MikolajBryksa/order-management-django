@@ -43,7 +43,7 @@ class UserAddForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'class': 'custom-selector'}),
             'email': forms.TextInput(attrs={'class': 'custom-selector'}),
-            'groups': forms.Select(attrs={'class': 'custom-selector'}),
+            'groups': forms.SelectMultiple(attrs={'class': 'custom-selector'}),
         }
 
     def clean(self):

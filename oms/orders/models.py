@@ -1,41 +1,39 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 
 class Order(models.Model):
-    # Status
-    VALUATION = 'Valuation'
-    NEW = 'New'
-    URGENT = 'Urgent'
-    DRAWING = 'Drawing'
-    INCOMPLETE = 'Incomplete'
-    DESIGNED = 'Designed'
-    EVAULATION = 'Evaluation'
-    IMPROVEMENT = 'Improvement'
-    ACCEPTED = 'Accepted'
-    PRODUCTION = 'Production'
-    PACKED = 'Packed'
-    SENT = 'Sent'
-
+    VALUATION = _('Valuation')
+    NEW = _('New')
+    URGENT = _('Urgent')
+    DRAWING = _('Drawing')
+    INCOMPLETE = _('Incomplete')
+    DESIGNED = _('Designed')
+    EVAULATION = _('Evaluation')
+    IMPROVEMENT = _('Improvement')
+    ACCEPTED = _('Accepted')
+    PRODUCTION = _('Production')
+    PACKED = _('Packed')
+    SENT = _('Sent')
     STATUS = [
-        (VALUATION, 'Valuation'),
-        (NEW, 'New'),
-        (URGENT, 'Urgent'),
-        (DRAWING, 'Drawing'),
-        (INCOMPLETE, 'Incomplete'),
-        (DESIGNED, 'Designed'),
-        (EVAULATION, 'Evaluation'),
-        (IMPROVEMENT, 'Improvement'),
-        (ACCEPTED, 'Accepted'),
-        (PRODUCTION, 'Production'),
-        (PACKED, 'Packed'),
-        (SENT, 'Sent'),
+        (VALUATION, _('Valuation')),
+        (NEW, _('New')),
+        (URGENT, _('Urgent')),
+        (DRAWING, _('Drawing')),
+        (INCOMPLETE, _('Incomplete')),
+        (DESIGNED, _('Designed')),
+        (EVAULATION, _('Evaluation')),
+        (IMPROVEMENT, _('Improvement')),
+        (ACCEPTED, _('Accepted')),
+        (PRODUCTION, _('Production')),
+        (PACKED, _('Packed')),
+        (SENT, _('Sent')),
     ]
 
     # Seller
     MAREK = 'Marek'
     NATALIA = 'Natalia'
     JOANNA = 'Joanna'
-
     SELLER = [
         (MAREK, 'Marek'),
         (NATALIA, 'Natalia'),
@@ -45,7 +43,6 @@ class Order(models.Model):
     # Designer
     MIKI = 'Miki'
     OLA = 'Ola'
-
     DESIGNER = [
         (MIKI, 'Miki'),
         (OLA, 'Ola'),
@@ -66,18 +63,6 @@ class Order(models.Model):
 
 
 class Action(models.Model):
-    # PRINTING = 'Printing'
-    # LAMINATION = 'Lamination'
-    # PLOTTING = 'Plotting'
-    # MILLING = 'Milling'
-    # CUTTING = 'Cutting'
-    # LASER = 'Laser'
-    # ENGRAVER = 'Engraver'
-    # RESIN = 'Resin'
-    # FASTENING = 'Fastening'
-    # STICKING = 'Sticking'
-    # FOLDING = "Folding"
-
     name = models.CharField(max_length=30)
     translation = models.CharField(max_length=30)
     sequence = models.IntegerField()
@@ -93,49 +78,49 @@ class Item(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     # Name
-    PREFAB = 'Prefab'
-    IDENTIFIERS = "Identifiers"
-    NUMBERS = 'Numbers'
-    COVER = 'Covers'
-    DIPLOMAS = 'Diplomas'
-    STENCIL = 'Stencil'
-    PLEXIGLASS = "Plexiglass"
-    CONTAINER = "Container"
-    BOARD = "Board"
-    STATUETTES = "Statuettes"
-    PLATES = "Plates"
-    LETTERS = "Letters"
+    PREFAB = _('Prefab')
+    IDENTIFIERS = _('Identifiers')
+    NUMBERS = _('Numbers')
+    COVER = _('Covers')
+    DIPLOMAS = _('Diplomas')
+    STENCIL = _('Stencil')
+    PLEXIGLASS = _('Plexiglass')
+    CONTAINER = _('Container')
+    BOARD = _('Board')
+    STATUETTES = _('Statuettes')
+    PLATES = _('Plates')
+    LETTERS = _('Letters')
 
     NAME = [
-        (PREFAB, 'Prefab'),
-        (IDENTIFIERS, "Identifiers"),
-        (NUMBERS, 'Numbers'),
-        (COVER, 'Covers'),
-        (DIPLOMAS, 'Diplomas'),
-        (STENCIL, 'Stencil'),
-        (PLEXIGLASS, "Plexiglass"),
-        (CONTAINER, "Container"),
-        (BOARD, "Board"),
-        (STATUETTES, "Statuettes"),
-        (PLATES, "Plates"),
-        (LETTERS, "Letters"),
+        (PREFAB, _('Prefab')),
+        (IDENTIFIERS, _('Identifiers')),
+        (NUMBERS, _('Numbers')),
+        (COVER, _('Covers')),
+        (DIPLOMAS, _('Diplomas')),
+        (STENCIL, _('Stencil')),
+        (PLEXIGLASS, _('Plexiglass')),
+        (CONTAINER, _('Container')),
+        (BOARD, _('Board')),
+        (STATUETTES, _('Statuettes')),
+        (PLATES, _('Plates')),
+        (LETTERS, _('Letters')),
     ]
 
     # Material
-    ALUMINIUM = 'Aluminium'
-    LAMINATE = 'Laminate'
-    DIBOND = 'Dibond'
-    POLYCARBONATE = 'Polycarbonate'
-    PLEXIGLASS = 'Plexiglass'
-    CUSTOM = 'Custom'
+    ALUMINIUM = _('Aluminium')
+    LAMINATE = _('Laminate')
+    DIBOND = _('Dibond')
+    POLYCARBONATE = _('Polycarbonate')
+    PLEXIGLASS = _('Plexiglass')
+    CUSTOM = _('Custom')
 
     MATERIAL = [
-        (ALUMINIUM, 'Aluminium'),
-        (LAMINATE, 'Laminate'),
-        (DIBOND, 'Dibond'),
-        (POLYCARBONATE, 'Polycarbonate'),
-        (PLEXIGLASS, 'Plexiglass'),
-        (CUSTOM, 'Custom'),
+        (ALUMINIUM, _('Aluminium')),
+        (LAMINATE, _('Laminate')),
+        (DIBOND, _('Dibond')),
+        (POLYCARBONATE, _('Polycarbonate')),
+        (PLEXIGLASS, _('Plexiglass')),
+        (CUSTOM, _('Custom')),
     ]
 
     # Thickness
@@ -145,7 +130,7 @@ class Item(models.Model):
     TWO = '2'
     THREE = '3'
     FIVE = '5'
-    OTHER = 'Other'
+    OTHER = _('Other')
 
     THICKNESS = [
         (ZERO_FIVE, '0,5'),
@@ -154,69 +139,69 @@ class Item(models.Model):
         (TWO, '2'),
         (THREE, '3'),
         (FIVE, '5'),
-        (OTHER, 'Other'),
+        (OTHER, _('Other')),
     ]
 
     # Color
-    SILVER = 'Silver'
-    GOLD = 'Gold'
-    WHITE = 'White'
-    BLACK = 'Black'
-    TRANSPARENT = 'Transparent'
-    CUSTOM = 'Custom'
+    SILVER = _('Silver')
+    GOLD = _('Gold')
+    WHITE = _('White')
+    BLACK = _('Black')
+    TRANSPARENT = _('Transparent')
+    CUSTOM = _('Custom')
 
     COLOR = [
-        (SILVER, 'Silver'),
-        (GOLD, 'Gold'),
-        (WHITE, 'White'),
-        (BLACK, 'Black'),
-        (TRANSPARENT, 'Transparent'),
-        (CUSTOM, 'Custom'),
+        (SILVER, _('Silver')),
+        (GOLD, _('Gold')),
+        (WHITE, _('White')),
+        (BLACK, _('Black')),
+        (TRANSPARENT, _('Transparent')),
+        (CUSTOM, _('Custom')),
     ]
 
     # Dimensions
-    OUTSIDE = 'Outside'
-    INSIDE = 'Inside'
+    OUTSIDE = _('Outside')
+    INSIDE = _('Inside')
 
     DIMENSIONS = [
-        (OUTSIDE, 'Outside'),
-        (INSIDE, 'Inside'),
+        (OUTSIDE, _('Outside')),
+        (INSIDE, _('Inside')),
     ]
 
     # Fastening
-    PIN = 'Pin'
-    MAGNET = 'Magnet'
-    GLUE = 'Glue'
-    HOLES = 'Holes'
-    WITHOUT = 'Without'
-    CUSTOM = 'Custom'
+    PIN = _('Pin')
+    MAGNET = _('Magnet')
+    GLUE = _('Glue')
+    HOLES = _('Holes')
+    WITHOUT = _('Without')
+    CUSTOM = _('Custom')
 
     FASTENING = [
-        (PIN, 'Pin'),
-        (MAGNET, 'Magnet'),
-        (GLUE, 'Glue'),
-        (HOLES, 'Holes'),
-        (WITHOUT, 'Without'),
-        (CUSTOM, 'Custom'),
+        (PIN, _('Pin')),
+        (MAGNET, _('Magnet')),
+        (GLUE, _('Glue')),
+        (HOLES, _('Holes')),
+        (WITHOUT, _('Without')),
+        (CUSTOM, _('Custom')),
     ]
 
     # Mark
-    PRINT = 'Print'
-    ENGRAVER = 'Engraver'
-    FOIL = 'Foil'
-    STICKER = 'Sticker'
-    OUTSOURCE = "Outsource"
-    WITHOUT = 'Without'
-    CUSTOM = 'Custom'
+    PRINT = _('Print')
+    ENGRAVER = _('Engraver')
+    FOIL = _('Foil')
+    STICKER = _('Sticker')
+    OUTSOURCE = _('Outsource')
+    WITHOUT = _('Without')
+    CUSTOM = _('Custom')
 
     MARK = [
-        (PRINT, 'Print'),
-        (ENGRAVER, 'Engraver'),
-        (FOIL, 'Foil'),
-        (STICKER, 'Sticker'),
-        (OUTSOURCE, 'Outsource'),
-        (WITHOUT, 'Without'),
-        (CUSTOM, 'Custom'),
+        (PRINT, _('Print')),
+        (ENGRAVER, _('Engraver')),
+        (FOIL, _('Foil')),
+        (STICKER, _('Sticker')),
+        (OUTSOURCE, _('Outsource')),
+        (WITHOUT, _('Without')),
+        (CUSTOM, _('Custom')),
     ]
 
     name = models.CharField(max_length=30, choices=NAME)
