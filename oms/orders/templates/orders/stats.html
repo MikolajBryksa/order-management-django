@@ -1,7 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load i18n %}
+{% load static %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="{% static 'chart.js' %}"></script>
+{#https://www.chartjs.org/#}
 
     <h2>{%  trans "Statistics" %}</h2>
 
+
+    <div class="chart">
+        <canvas id="myChart" width="600px" height="600px"></canvas>
+    </div>
+<script>
+let nyChart = document.getElementById('myChart').getContext('2d');
+
+let ordersChart = new Chart (myChart, {
+    type: 'doughnut',
+    data: {
+        labels:['Pierwszy', 'Drugi', 'Trzeci'],
+        datasets:[{
+            label: 'Orders',
+            data: [12, 23, 43],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4,
+            hoverBorderColor: 'white',
+        }],
+    },
+
+    options: {
+        legend: {
+            display: 'true',
+            position: 'left',
+        }
+    },
+})
+</script>
 {% endblock %}
