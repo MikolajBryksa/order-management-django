@@ -48,6 +48,12 @@ table td {
     margin-right: 1%;
 }
 
+.search {
+    box-sizing: border-box;
+    float: left;
+    max-width: 50%;
+}
+
 .description {
     padding-inline: 2em;
     padding-block: 1em;
@@ -101,7 +107,6 @@ button {
     padding-bottom: 4px;
 }
 
-
 button:hover {
     color: #fff;
     background-color: var(--light);
@@ -128,7 +133,10 @@ mark {
   top: 0;
 }
 
-
+.chart {
+    box-sizing: border-box;
+    float: left;
+}
 
 
 @media screen and (max-width: 600px) {

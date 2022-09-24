@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-22 18:34+0200\n"
+"POT-Creation-Date: 2022-09-24 11:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,9 +334,9 @@ msgstr "Klient"
 msgid "Designer"
 msgstr "Grafik"
 
-#: orders/templates/orders/stats.html:5
+#: orders/templates/orders/stats.html:8
 msgid "Statistics"
-msgstr ""
+msgstr "Statystyki"
 
 #: users/templates/auth/user_confirm_delete.html:4
 #, fuzzy

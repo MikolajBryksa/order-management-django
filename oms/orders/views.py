@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Order, Item, Comment
-from .forms import OrderAddForm, ItemAddForm, CommentAddForm
+from .forms import OrderAddForm, ItemAddForm, CommentAddForm, SearchForm
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, RedirectView, DeleteView, UpdateView
+from django.views.generic import CreateView, RedirectView, DeleteView, UpdateView, ListView
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from .filters import OrderFilter
 
 
 class OrderList(View):
@@ -22,10 +23,6 @@ class Stats(View):
 class Info(View):
     def get(self, request):
         return render(request, 'orders/info.html')
-
-
-# class Language(View):
-#     url = reverse_lazy('order_list')
 
 
 class OrderDetails(View):
@@ -72,6 +69,7 @@ class ItemAdd(PermissionRequiredMixin, CreateView):
         data["order"] = Order.objects.get(pk=order_pk)
         return data
 
+
 class ItemDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'orders.delete_item'
     model = Item
@@ -112,3 +110,21 @@ class CommentEdit(LoginRequiredMixin, UpdateView):
     form_class = CommentAddForm
     template_name_suffix = '_edit'
     success_url = "/order_details/{order_id}"
+
+
+class OrderSearch(View):
+    template_name = "orders/order_search.html"
+
+    def get(self, request, *args, **kwargs):
+        form = SearchForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            customer = form.cleaned_data['customer']
+            orders = Order.objects.filter(customer__icontains=customer)
+            context = {'form': form, 'orders': orders}
+            return render(request, self.template_name, context)
+        else:
+            return render(request, self.template_name, {'form': form})

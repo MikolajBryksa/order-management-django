@@ -16,12 +16,11 @@ class OrderAddForm(forms.ModelForm):
 
 
 class ItemAddForm(forms.ModelForm):
-
     class Meta:
         model = Item
         fields = (
-        'order', 'name', 'material', 'thickness', 'color', 'dimensions', 'width', 'height', 'depth', 'fastening',
-        'hole', 'rounding', 'mark', 'quantity', 'description', 'actions')
+            'order', 'name', 'material', 'thickness', 'color', 'dimensions', 'width', 'height', 'depth', 'fastening',
+            'hole', 'rounding', 'mark', 'quantity', 'description', 'actions')
 
         widgets = {
             'order': forms.Select(attrs={'class': 'custom-selector'}),
@@ -52,3 +51,7 @@ class CommentAddForm(forms.ModelForm):
             'order': forms.Select(attrs={'class': 'custom-selector'}),
             'message': forms.Textarea(attrs={'class': 'custom-selector'}),
         }
+
+
+class SearchForm(forms.Form):
+    customer = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
