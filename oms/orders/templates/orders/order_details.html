@@ -27,29 +27,29 @@
 
     <thead>
     <tr>
-        <th data-label="name" colspan="2">{{ item.name }}</th>
+        <th data-label="name" colspan="2">{% trans item.name %}</th>
     </tr>
     </thead>
 
     <tr>
         <td>{%  trans "Material" %}:</td>
-        <td data-label="material">{{ item.material }}</td>
+        <td data-label="material">{% trans item.material %}</td>
     </tr>
 
      <tr>
         <td>{%  trans "Thickness" %}:</td>
-        <td data-label="thickness">{{ item.thickness }} mm</td>
+        <td data-label="thickness">{% trans item.thickness %} mm</td>
     </tr>
 
     <tr>
         <td>{%  trans "Color" %}:</td>
-        <td data-label="color">{{ item.color }}</td>
+        <td data-label="color">{% trans item.color %}</td>
     </tr>
 
     {% if item.dimensions != None %}
     <tr>
         <td>{%  trans "Dimensions" %}:</td>
-        <td data-label="dimensions">{{ item.dimensions }}</td>
+        <td data-label="dimensions">{% trans item.dimensions %}</td>
     </tr>
     {%  endif %}
 
@@ -72,27 +72,27 @@
 
     <tr>
         <td>{%  trans "Fastening" %}:</td>
-        <td data-label="fastening">{{ item.fastening }}</td>
+        <td data-label="fastening">{% trans item.fastening %}</td>
     </tr>
 
     {% if item.hole != None %}
     <tr>
         <td>{%  trans "Hole" %}:</td>
-        <td data-label="hole">{{ item.hole}} mm</td>
+        <td data-label="hole">{% trans item.hole %} mm</td>
     </tr>
     {%  endif %}
 
     {% if item.rounding != None %}
     <tr>
         <td>{%  trans "Rounding" %}:</td>
-        <td data-label="rounding">{{ item.rounding}}</td>
+        <td data-label="rounding">{% trans item.rounding %}</td>
     </tr>
     {%  endif %}
 
     {% if item.mark != None %}
     <tr>
         <td>{%  trans "Mark" %}:</td>
-        <td data-label="mark">{{ item.mark}}</td>
+        <td data-label="mark">{% trans item.mark %}</td>
     </tr>
     {%  endif %}
 
@@ -107,7 +107,7 @@
 
     <tr><th colspan="2">
         {% for actions in item.actions.all %}
-            {{ actions.name }}
+            {%  trans actions.name %}
         {% endfor %}
     </th></tr>
 
@@ -116,7 +116,6 @@
         <td colspan="2"><a href='/item_edit/{{ item.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a></td>
     </tr>
     {% endif %}
-
 
 </table></br>
 </div>

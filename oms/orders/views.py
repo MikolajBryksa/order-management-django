@@ -5,6 +5,7 @@ from .forms import OrderAddForm, ItemAddForm, CommentAddForm, SearchForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, RedirectView, DeleteView, UpdateView, ListView
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.db.models import Count
 from .filters import OrderFilter
 
 
@@ -17,7 +18,11 @@ class OrderList(View):
 
 class Stats(View):
     def get(self, request):
-        return render(request, 'orders/stats.html')
+        marek = Order.objects.filter(seller="Marek").count()
+        natalia = Order.objects.filter(seller="Natalia").count()
+        joanna = Order.objects.filter(seller="Joanna").count()
+        context = {"marek": marek, "natalia": natalia, "joanna": joanna}
+        return render(request, 'orders/stats.html', context)
 
 
 class Info(View):

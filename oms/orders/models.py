@@ -48,11 +48,11 @@ class Order(models.Model):
         (OLA, 'Ola'),
     ]
 
-    date = models.DateTimeField(auto_now_add=True)
-    seller = models.CharField(max_length=20, choices=SELLER)
-    customer = models.EmailField(max_length=260)
-    designer = models.CharField(max_length=20, choices=DESIGNER, default=MIKI)
-    status = models.CharField(max_length=20, choices=STATUS, default=VALUATION)
+    date = models.DateTimeField(_('date'), auto_now_add=True)
+    seller = models.CharField(_('seller'), max_length=20, choices=SELLER)
+    customer = models.EmailField(_('customer'), max_length=260)
+    designer = models.CharField(_('designer'), max_length=20, choices=DESIGNER, default=MIKI)
+    status = models.CharField(_('status'), max_length=20, choices=STATUS, default=VALUATION)
 
     class Meta:
         verbose_name = "Order"
@@ -79,7 +79,7 @@ class Item(models.Model):
 
     # Name
     PREFAB = _('Prefab')
-    IDENTIFIERS = _('Identifiers')
+    NAMETAGS = _('Nametags')
     NUMBERS = _('Numbers')
     COVER = _('Covers')
     DIPLOMAS = _('Diplomas')
@@ -93,7 +93,7 @@ class Item(models.Model):
 
     NAME = [
         (PREFAB, _('Prefab')),
-        (IDENTIFIERS, _('Identifiers')),
+        (NAMETAGS, _('Nametags')),
         (NUMBERS, _('Numbers')),
         (COVER, _('Covers')),
         (DIPLOMAS, _('Diplomas')),
@@ -203,24 +203,24 @@ class Item(models.Model):
         (WITHOUT, _('Without')),
         (CUSTOM, _('Custom')),
     ]
+    # relacje display_name=
+    name = models.CharField(_('name'), max_length=30, choices=NAME)
+    material = models.CharField(_('material'), max_length=50, choices=MATERIAL)
+    thickness = models.CharField(_('thickness'), max_length=10, choices=THICKNESS)
+    color = models.CharField(_('color'), max_length=50, choices=COLOR)
+    dimensions = models.CharField(_('dimensions'), max_length=30, choices=DIMENSIONS, null=True, blank=True, default=OUTSIDE)
+    width = models.IntegerField(_('width'))
+    height = models.IntegerField(_('height'))
+    depth = models.IntegerField(_('depth'), null=True, blank=True)
+    fastening = models.CharField(_('fastening'), max_length=30, choices=FASTENING)
 
-    name = models.CharField(max_length=30, choices=NAME)
-    material = models.CharField(max_length=50, choices=MATERIAL)
-    thickness = models.CharField(max_length=10, choices=THICKNESS)
-    color = models.CharField(max_length=50, choices=COLOR)
-    dimensions = models.CharField(max_length=30, choices=DIMENSIONS, null=True, blank=True, default=OUTSIDE)
-    width = models.IntegerField()
-    height = models.IntegerField()
-    depth = models.IntegerField(null=True, blank=True)
-    fastening = models.CharField(max_length=30, choices=FASTENING)
+    hole = models.CharField(_('hole'), max_length=20, null=True, blank=True)
+    rounding = models.CharField(_('rounding'), max_length=10, null=True, blank=True)
+    mark = models.CharField(_('mark'), max_length=50, choices=MARK)
+    quantity = models.IntegerField(_('quantity'))
+    description = models.TextField(_('description'), null=True, blank=True, default=None)
 
-    hole = models.CharField(max_length=20, null=True, blank=True)
-    rounding = models.CharField(max_length=10, null=True, blank=True)
-    mark = models.CharField(max_length=50, choices=MARK)
-    quantity = models.IntegerField()
-    description = models.TextField(null=True, blank=True, default=None)
-
-    actions = models.ManyToManyField(Action)
+    actions = models.ManyToManyField(Action, verbose_name=_("Action"))
 
     def __str__(self):
         return self.name
