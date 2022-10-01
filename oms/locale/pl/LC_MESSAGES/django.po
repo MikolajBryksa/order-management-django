@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-24 11:03+0200\n"
+"POT-Creation-Date: 2022-10-01 15:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,8 +41,6 @@ msgid "Incomplete"
 msgstr "Niekompletne"
 
 #: orders/models.py:11 orders/models.py:24
-#, fuzzy
-#| msgid "Designer"
 msgid "Designed"
 msgstr "Zaprojektowane"
 
@@ -59,8 +57,6 @@ msgid "Accepted"
 msgstr "Zaakceptowane"
 
 #: orders/models.py:15 orders/models.py:28
-#, fuzzy
-#| msgid "Project description"
 msgid "Production"
 msgstr "Produkowane"
 
@@ -72,12 +68,32 @@ msgstr "Zapakowane"
 msgid "Sent"
 msgstr "Wysłane"
 
+#: orders/models.py:51 orders/templates/orders/order_list.html:11
+msgid "date"
+msgstr "data"
+
+#: orders/models.py:52 orders/templates/orders/order_list.html:12
+msgid "seller"
+msgstr "handlowiec"
+
+#: orders/models.py:53 orders/templates/orders/order_list.html:13
+msgid "customer"
+msgstr "klient"
+
+#: orders/models.py:54 orders/templates/orders/order_list.html:14
+msgid "designer"
+msgstr "grafik"
+
+#: orders/models.py:55
+msgid "status"
+msgstr "status"
+
 #: orders/models.py:81 orders/models.py:95
 msgid "Prefab"
 msgstr "Gotowce"
 
 #: orders/models.py:82 orders/models.py:96
-msgid "Identifiers"
+msgid "Nametags"
 msgstr "Identyfikatory"
 
 #: orders/models.py:83 orders/models.py:97
@@ -140,8 +156,6 @@ msgstr "Poliwęglan"
 #: orders/models.py:115 orders/models.py:123 orders/models.py:151
 #: orders/models.py:159 orders/models.py:177 orders/models.py:185
 #: orders/models.py:195 orders/models.py:204
-#, fuzzy
-#| msgid "Customer"
 msgid "Custom"
 msgstr "Niestandardowy"
 
@@ -220,6 +234,90 @@ msgstr "Naklejka"
 msgid "Outsource"
 msgstr "Outsourcing"
 
+#: orders/models.py:207
+msgid "name"
+msgstr "Nazwa"
+
+#: orders/models.py:208
+#, fuzzy
+#| msgid "Material"
+msgid "material"
+msgstr "Materiał"
+
+#: orders/models.py:209
+#, fuzzy
+#| msgid "Thickness"
+msgid "thickness"
+msgstr "Grubość"
+
+#: orders/models.py:210
+#, fuzzy
+#| msgid "Color"
+msgid "color"
+msgstr "Kolor"
+
+#: orders/models.py:211
+#, fuzzy
+#| msgid "Dimensions"
+msgid "dimensions"
+msgstr "Wymiary"
+
+#: orders/models.py:212
+#, fuzzy
+#| msgid "Width"
+msgid "width"
+msgstr "Szerokość"
+
+#: orders/models.py:213
+#, fuzzy
+#| msgid "Height"
+msgid "height"
+msgstr "Wysokość"
+
+#: orders/models.py:214
+#, fuzzy
+#| msgid "Depth"
+msgid "depth"
+msgstr "Głębokość"
+
+#: orders/models.py:215
+#, fuzzy
+#| msgid "Fastening"
+msgid "fastening"
+msgstr "Mocowanie"
+
+#: orders/models.py:217
+msgid "hole"
+msgstr "Otwór"
+
+#: orders/models.py:218
+#, fuzzy
+#| msgid "Rounding"
+msgid "rounding"
+msgstr "Zaokrąglenie"
+
+#: orders/models.py:219
+msgid "mark"
+msgstr "Znakowanie"
+
+#: orders/models.py:220
+#, fuzzy
+#| msgid "Quantity"
+msgid "quantity"
+msgstr "Ilość"
+
+#: orders/models.py:221
+#, fuzzy
+#| msgid "Project description"
+msgid "description"
+msgstr "Opis projektu"
+
+#: orders/models.py:223
+#, fuzzy
+#| msgid "Project description"
+msgid "Action"
+msgstr "Produkowane"
+
 #: orders/templates/orders/comment_add.html:4
 msgid "Add comment"
 msgstr "Dodaj komentarz"
@@ -249,8 +347,6 @@ msgid "Delete item"
 msgstr "Skasuj produkt"
 
 #: orders/templates/orders/item_edit.html:4
-#, fuzzy
-#| msgid "Edit"
 msgid "Edit item"
 msgstr "Edytuj produkt"
 
@@ -318,31 +414,31 @@ msgstr "Ilość"
 msgid "Edit order"
 msgstr "Edytuj zamówienie"
 
-#: orders/templates/orders/order_list.html:10
+#: orders/templates/orders/order_search.html:4
+msgid "Search order"
+msgstr "Znajdź zamówienie"
+
+#: orders/templates/orders/order_search.html:22
 msgid "Date"
 msgstr "Data"
 
-#: orders/templates/orders/order_list.html:11
-msgid "Seller"
-msgstr "Handlowiec"
-
-#: orders/templates/orders/order_list.html:12
+#: orders/templates/orders/order_search.html:23
 msgid "Customer"
 msgstr "Klient"
 
-#: orders/templates/orders/order_list.html:13
-msgid "Designer"
-msgstr "Grafik"
-
-#: orders/templates/orders/stats.html:8
+#: orders/templates/orders/stats.html:10
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: users/templates/auth/user_confirm_delete.html:4
+#: orders/templates/orders/stats.html:17
 #, fuzzy
 #| msgid "Delete order"
+msgid "Active orders"
+msgstr "Aktywne zamówienia"
+
+#: users/templates/auth/user_confirm_delete.html:4
 msgid "Delete user"
-msgstr "Usuń zamówienie"
+msgstr "Usuń użytkownika"
 
 #: users/templates/auth/user_edit.html:4
 #, fuzzy
@@ -358,9 +454,26 @@ msgstr "Dodaj użytkownika"
 msgid "Users"
 msgstr "Użytkownicy"
 
+#: users/templates/users/user_list.html:17
+msgid "Name"
+msgstr "Imię"
+
+#: users/templates/users/user_list.html:18
+msgid "Group"
+msgstr "Grupa"
+
 #: users/templates/users/user_login.html:13
 msgid "Login"
 msgstr "Zaloguj"
+
+#~ msgid "Identifiers"
+#~ msgstr "Identyfikatory"
+
+#~ msgid "Seller"
+#~ msgstr "Handlowiec"
+
+#~ msgid "Designer"
+#~ msgstr "Grafik"
 
 #~ msgid "Save"
 #~ msgstr "Zapisz"

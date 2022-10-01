@@ -3,41 +3,67 @@
 {% load i18n %}
 {% load static %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-<script src="{% static 'chart.js' %}"></script>
+{#<script src="{% static 'chart.js' %}"></script>#}
 {#https://www.chartjs.org/#}
+{#    stats: doughnut chart#}
 
     <h2>{%  trans "Statistics" %}</h2>
 
+    <div class="item">
+    <table class="table">
 
-    <div class="chart">
-        <canvas id="myChart" width="600px" height="600px"></canvas>
+        <thead>
+            <tr>
+                <th data-label="name" colspan="2">{%  trans "Active orders" %}</th>
+            </tr>
+        </thead>
+
+        <tr style="background-color: #FF6384">
+            <td>Natalia:</td>
+            <td>{{ natalia }}</td>
+        </tr>
+
+        <tr style="background-color: #36A2EB">
+            <td>Joanna:</td>
+            <td>{{ joanna }}</td>
+        </tr>
+
+        <tr style="background-color: #FFCD56">
+            <td>Marek:</td>
+            <td>{{ marek }}</td>
+        </tr>
+
+    </table></br>
+    <canvas id="myChart" width="500px" height="600px"></canvas>
     </div>
-<script>
-let nyChart = document.getElementById('myChart').getContext('2d');
 
-let ordersChart = new Chart (myChart, {
-    type: 'doughnut',
-    data: {
-        labels:['Pierwszy', 'Drugi', 'Trzeci'],
-        datasets:[{
-            label: 'Orders',
-            data: [12, 23, 43],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4,
-            hoverBorderColor: 'white',
-        }],
-    },
 
-    options: {
-        legend: {
-            display: 'true',
-            position: 'left',
-        }
-    },
-})
-</script>
+    <script>
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels:['Natalia', 'Joanna', 'Marek'],
+            datasets:[{
+                label: 'Orders',
+                data: [{{ natalia }}, {{ joanna }}, {{ marek }}],
+                backgroundColor: [
+                  '#FF6384',
+                  '#36A2EB',
+                  '#FFCD56',
+                ],
+                hoverOffset: 4,
+                hoverBorderColor: 'white',
+            }],
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            }
+        },
+    });
+    </script>
 {% endblock %}

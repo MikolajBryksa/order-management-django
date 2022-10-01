@@ -24,7 +24,6 @@ from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDele
 from users.views import UserList, Login, Logout, UserAdd, UserEdit, UserDelete
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),

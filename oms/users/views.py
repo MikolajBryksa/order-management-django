@@ -8,7 +8,8 @@ User = get_user_model()
 
 
 class UserList(ListView):
-    model = User
+    # model = User
+    queryset = User.objects.order_by("groups__name")
     template_name = 'users/user_list.html'
     context_object_name = 'users'
 
