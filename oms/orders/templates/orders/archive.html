@@ -13,18 +13,12 @@
       <th scope="col">{%  trans "customer" %}</th>
       <th scope="col">{%  trans "designer" %}</th>
       <th scope="col">Status</th>
-
-      <th scope="col">
-        {% if perms.orders.add_order %}
-            <a href='/order_add/'><button class="icon"><i class="bi-plus"></i></button></a>
-        {% endif %}
-
-      </th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
   <tbody>
-    {% for order in orders %}
+    {% for order in orders_shipped %}
         <tr>
           <td data-label="date<">{{ order.date }}</td>
           <td data-label="seller">{{ order.seller }}</td>
@@ -33,9 +27,7 @@
           <td data-label="status"><b>{% trans order.status %}</b></td>
           <td><a href='/order_edit/{{ order.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a></td>
         </tr>
-
     {% endfor %}
-
   </tbody>
 
 </table>
