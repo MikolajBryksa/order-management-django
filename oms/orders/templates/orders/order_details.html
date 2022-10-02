@@ -107,7 +107,11 @@
 
     <tr><th colspan="2">
         {% for actions in item.actions.all %}
-            {%  trans actions.name %}
+            {% if LANGUAGE_CODE == "en" %}
+                {%  trans actions.name %}
+            {%  else %}
+                {%  trans actions.translation %}
+            {% endif %}
         {% endfor %}
     </th></tr>
 

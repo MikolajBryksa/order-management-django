@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-01 15:50+0200\n"
+"POT-Creation-Date: 2022-10-02 11:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,19 +68,23 @@ msgstr "Zapakowane"
 msgid "Sent"
 msgstr "Wysłane"
 
-#: orders/models.py:51 orders/templates/orders/order_list.html:11
+#: orders/models.py:51 orders/templates/orders/archive.html:11
+#: orders/templates/orders/order_list.html:11
 msgid "date"
 msgstr "data"
 
-#: orders/models.py:52 orders/templates/orders/order_list.html:12
+#: orders/models.py:52 orders/templates/orders/archive.html:12
+#: orders/templates/orders/order_list.html:12
 msgid "seller"
 msgstr "handlowiec"
 
-#: orders/models.py:53 orders/templates/orders/order_list.html:13
+#: orders/models.py:53 orders/templates/orders/archive.html:13
+#: orders/templates/orders/order_list.html:13
 msgid "customer"
 msgstr "klient"
 
-#: orders/models.py:54 orders/templates/orders/order_list.html:14
+#: orders/models.py:54 orders/templates/orders/archive.html:14
+#: orders/templates/orders/order_list.html:14
 msgid "designer"
 msgstr "grafik"
 
@@ -119,7 +123,7 @@ msgstr "Pleksi"
 
 #: orders/models.py:88 orders/models.py:102
 msgid "Container"
-msgstr "Obudowa"
+msgstr "Pojemnik"
 
 #: orders/models.py:89 orders/models.py:103
 msgid "Board"
@@ -426,15 +430,19 @@ msgstr "Data"
 msgid "Customer"
 msgstr "Klient"
 
-#: orders/templates/orders/stats.html:10
+#: orders/templates/orders/stats.html:8
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: orders/templates/orders/stats.html:17
+#: orders/templates/orders/stats.html:16
 #, fuzzy
 #| msgid "Delete order"
 msgid "Active orders"
 msgstr "Aktywne zamówienia"
+
+#: orders/templates/orders/stats.html:73
+msgid "Tasks for Designers"
+msgstr "Zadania grafików"
 
 #: users/templates/auth/user_confirm_delete.html:4
 msgid "Delete user"

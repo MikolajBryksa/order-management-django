@@ -5,23 +5,32 @@ from .forms import OrderAddForm, ItemAddForm, CommentAddForm, SearchForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, RedirectView, DeleteView, UpdateView, ListView
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.db.models import Q
 from django.db.models import Count
-from .filters import OrderFilter
 
 
 class OrderList(View):
     def get(self, request):
-        orders = Order.objects.order_by('date')
+        orders = Order.objects.order_by('date').exclude(status="Sent")
         context = {"orders": orders}
         return render(request, 'orders/order_list.html', context)
 
 
+class Archive(View):
+    def get(self, request):
+        orders_shipped = Order.objects.filter(status="Sent")
+        context = {"orders_shipped": orders_shipped}
+        return render(request, 'orders/archive.html', context)
+
+
 class Stats(View):
     def get(self, request):
-        marek = Order.objects.filter(seller="Marek").count()
-        natalia = Order.objects.filter(seller="Natalia").count()
-        joanna = Order.objects.filter(seller="Joanna").count()
-        context = {"marek": marek, "natalia": natalia, "joanna": joanna}
+        marek = Order.objects.filter(seller="Marek").exclude(status="Sent").count()
+        natalia = Order.objects.filter(seller="Natalia").exclude(status="Sent").count()
+        joanna = Order.objects.filter(seller="Joanna").exclude(status="Sent").count()
+        miki = Order.objects.filter(designer='Miki').filter(Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(status='Improvement')).count()
+        ola = Order.objects.filter(designer='Ola').filter(Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(status='Improvement')).count()
+        context = {"marek": marek, "natalia": natalia, "joanna": joanna, "miki": miki, "ola": ola}
         return render(request, 'orders/stats.html', context)
 
 
