@@ -452,7 +452,7 @@ msgstr "Usuń użytkownika"
 #, fuzzy
 #| msgid "Edit order"
 msgid "Edit user"
-msgstr "Edytuj zamówienie"
+msgstr "Edytuj użytkownika"
 
 #: users/templates/users/user_add.html:4
 msgid "Add user"
