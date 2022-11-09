@@ -1,11 +1,11 @@
 from django import forms
-from .models import Order, Item, Comment
+from .models import Order, Item, Comment, Address
 
 
 class OrderAddForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('seller', 'customer', 'designer', 'status')
+        fields = ('seller', 'customer', 'designer', 'status',)
 
         widgets = {
             'seller': forms.Select(attrs={'class': 'custom-selector'}),
@@ -23,7 +23,7 @@ class ItemAddForm(forms.ModelForm):
             'hole', 'rounding', 'mark', 'quantity', 'description', 'actions')
 
         widgets = {
-            'order': forms.Select(attrs={'class': 'custom-selector'}),
+            'order': forms.HiddenInput(),
             'name': forms.Select(attrs={'class': 'custom-selector'}),
             'material': forms.Select(attrs={'class': 'custom-selector'}),
             'thickness': forms.Select(attrs={'class': 'custom-selector'}),
@@ -48,10 +48,29 @@ class CommentAddForm(forms.ModelForm):
         fields = ('order', 'message')
 
         widgets = {
-            'order': forms.Select(attrs={'class': 'custom-selector'}),
+            'order': forms.HiddenInput(),
             'message': forms.Textarea(attrs={'class': 'custom-selector'}),
         }
 
 
 class SearchForm(forms.Form):
-    customer = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
+    # customer = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
+    klient = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
+
+
+class AddressAddForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = (
+            'order', 'customer', 'street', 'zip_code', 'city', 'shipment_date', 'shipment_comment', 'phone_number')
+
+        widgets = {
+            'order': forms.HiddenInput(),
+            'customer': forms.TextInput(attrs={'class': 'custom-selector'}),
+            'street': forms.TextInput(attrs={'class': 'custom-selector'}),
+            'zip_code': forms.TextInput(attrs={'class': 'custom-selector'}),
+            'city': forms.TextInput(attrs={'class': 'custom-selector'}),
+            'shipment_date': forms.DateInput(attrs={'class': 'custom-selector'}),
+            'shipment_comment': forms.Textarea(attrs={'class': 'custom-selector'}),
+            'phone_number': forms.TextInput(attrs={'class': 'custom-selector'}),
+        }

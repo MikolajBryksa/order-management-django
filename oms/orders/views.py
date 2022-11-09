@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Order, Item, Comment
-from .forms import OrderAddForm, ItemAddForm, CommentAddForm, SearchForm
+from .models import Order, Item, Comment, Address
+from .forms import OrderAddForm, ItemAddForm, CommentAddForm, SearchForm, AddressAddForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, RedirectView, DeleteView, UpdateView, ListView
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import Q
-from django.db.models import Count
 
 
 class OrderList(View):
@@ -28,8 +27,12 @@ class Stats(View):
         marek = Order.objects.filter(seller="Marek").exclude(status="Sent").count()
         natalia = Order.objects.filter(seller="Natalia").exclude(status="Sent").count()
         joanna = Order.objects.filter(seller="Joanna").exclude(status="Sent").count()
-        miki = Order.objects.filter(designer='Miki').filter(Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(status='Improvement')).count()
-        ola = Order.objects.filter(designer='Ola').filter(Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(status='Improvement')).count()
+        miki = Order.objects.filter(designer='Miki').filter(
+            Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(
+                status='Improvement')).count()
+        ola = Order.objects.filter(designer='Ola').filter(
+            Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(
+                status='Improvement')).count()
         context = {"marek": marek, "natalia": natalia, "joanna": joanna, "miki": miki, "ola": ola}
         return render(request, 'orders/stats.html', context)
 
@@ -142,3 +145,43 @@ class OrderSearch(View):
             return render(request, self.template_name, context)
         else:
             return render(request, self.template_name, {'form': form})
+
+
+class AddressDetails(View):
+    def get(self, request, order_pk):
+        order = Order.objects.get(pk=order_pk)
+        try:
+            address = Address.objects.get(order=order_pk)
+        except:
+            address = None
+
+        context = {"order": order, "address": address}
+        return render(request, 'orders/address_details.html', context)
+
+
+class AddressAdd(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    model = Address
+    form_class = AddressAddForm
+    template_name = 'orders/address_add.html'
+    success_url = "/address_details/{order_id}"
+
+    def get_initial(self):
+        order_pk = self.kwargs["order_pk"]
+        data = super().get_initial()
+        data["order"] = Order.objects.get(pk=order_pk)
+        return data
+
+
+class AddressDelete(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
+    model = Address
+    success_url = "/address_details/{order_id}"
+
+
+class AddressEdit(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+    model = Address
+    form_class = AddressAddForm
+    template_name_suffix = '_edit'
+    success_url = "/address_details/{order_id}"

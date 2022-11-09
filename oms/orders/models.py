@@ -71,7 +71,8 @@ class Action(models.Model):
         ordering = ['sequence']
 
     def __str__(self):
-        return self.name
+        # return self.name
+        return self.translation
 
 
 class Item(models.Model):
@@ -203,12 +204,13 @@ class Item(models.Model):
         (WITHOUT, _('Without')),
         (CUSTOM, _('Custom')),
     ]
-    # relacje display_name=
+
     name = models.CharField(_('name'), max_length=30, choices=NAME)
     material = models.CharField(_('material'), max_length=50, choices=MATERIAL)
     thickness = models.CharField(_('thickness'), max_length=10, choices=THICKNESS)
     color = models.CharField(_('color'), max_length=50, choices=COLOR)
-    dimensions = models.CharField(_('dimensions'), max_length=30, choices=DIMENSIONS, null=True, blank=True, default=OUTSIDE)
+    dimensions = models.CharField(_('dimensions'), max_length=30, choices=DIMENSIONS, null=True, blank=True,
+                                  default=OUTSIDE)
     width = models.IntegerField(_('width'))
     height = models.IntegerField(_('height'))
     depth = models.IntegerField(_('depth'), null=True, blank=True)
@@ -229,7 +231,21 @@ class Item(models.Model):
 class Comment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    message = models.TextField()
+    message = models.TextField(_('message'))
 
     def __str__(self):
         return self.date
+
+
+class Address(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    customer = models.CharField(_('customer'), max_length=255)
+    street = models.CharField(_('street'), max_length=100)
+    zip_code = models.CharField(_('zip code'), max_length=6)
+    city = models.CharField(_('city'), max_length=30)
+    shipment_date = models.DateField(_('shipment date'), )
+    shipment_comment = models.TextField(_('shipment comment'), blank=True)
+    phone_number = models.CharField(_('phone number'), max_length=12)
+
+    def __str__(self):
+        return self.customer
