@@ -13,7 +13,7 @@
 <a href='/order_search/'><button class="icon"><i class="bi-search"></i></button></a>
 <a href='/archive/'><button class="icon"><i class="bi-archive"></i></button></a>
 <a href='/stats/'><button class="icon"><i class="bi-pie-chart"></i></button></a>
-<a href='/info/'><button class="icon"><i class="bi-info-circle"></i></button></a>
+{#<a href='/info/'><button class="icon"><i class="bi-info-circle"></i></button></a>#}
 
 <form class="hidden" action="{% url 'set_language' %}" method="post">{% csrf_token %}
     <select name="language" style="display:none">

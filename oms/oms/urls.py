@@ -19,7 +19,8 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext as _
 
 from orders.views import OrderList, OrderDetails, OrderAdd, OrderEdit, OrderDelete, \
-    ItemAdd, ItemEdit, ItemDelete, CommentAdd, CommentEdit, CommentDelete, Info, Stats, OrderSearch, Archive
+    ItemAdd, ItemEdit, ItemDelete, CommentAdd, CommentEdit, CommentDelete, Info, Stats, OrderSearch, Archive, \
+    AddressDetails, AddressAdd, AddressEdit, AddressDelete
 
 from users.views import UserList, Login, Logout, UserAdd, UserEdit, UserDelete
 
@@ -50,6 +51,11 @@ urlpatterns += i18n_patterns(
     path('comment_add/<int:order_pk>/', CommentAdd.as_view(), name='comment_add'),
     path('comment_edit/<int:pk>/', CommentEdit.as_view(), name="comment_edit"),
     path('comment_delete/<int:pk>/', CommentDelete.as_view(), name="comment_delete"),
+
+    path('address_details/<int:order_pk>/', AddressDetails.as_view(), name='address_details'),
+    path('address_add/<int:order_pk>/', AddressAdd.as_view(), name='address_add'),
+    path('address_edit/<int:pk>/', AddressEdit.as_view(), name="address_edit"),
+    path('address_delete/<int:pk>/', AddressDelete.as_view(), name="address_delete"),
 
     path('user_list/', UserList.as_view(), name="user_list"),
     path('user_add/', UserAdd.as_view(), name="user_add"),

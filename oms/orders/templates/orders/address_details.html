@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load i18n %}
+    <h2>{% trans "Shipping address" %}</h2>
+
+    <a href='/order_details/{{ order.pk}}'>{{ order.customer }}</a>
+
+    </br></br>
+
+    {% if perms.orders.add_address %}
+        {% if address == None %}
+            <a href='/address_add/{{ order.pk }}/'><button class="icon"><i class="bi-plus"></i></button></a>
+        {% else %}
+            <a href='/address_edit/{{ address.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a>
+        {% endif %}
+    {% endif %}
+
+
+    </br></br></br>
+
+        {% if address != None %}
+        <div class="item">
+            {% trans address.customer %} </br>
+            {% trans address.street %} </br>
+            {% trans address.zip_code %} {% trans address.city %} </br>
+
+            </br>
+
+            {% trans "Shipment date" %}: {{ address.shipment_date }} </br>
+            {% trans "Phone number" %}: {{ address.phone_number }} </br>
+
+            </br>
+
+            {% if address.shipment_comment != None %}
+            {{ address.shipment_comment }}
+            {% endif %}
+
+        </div>
+        {% endif %}
+
+{% endblock %}
