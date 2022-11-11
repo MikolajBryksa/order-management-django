@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -116,11 +118,13 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static_files/'
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static_files")]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_files'),)
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static_files")]
 
 LOGIN_URL = '/login/'
 
+django_heroku.settings(locals())
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -128,14 +132,12 @@ LOGIN_URL = '/login/'
 try:
     from oms.local_settings import DATABASES
 except ModuleNotFoundError:
-    print("Brak konfiguracji bazy danych w pliku local_settings.py!")
-    print("Uzupełnij dane i spróbuj ponownie!")
+    print("There is no database configuration in the file local_settings.py!")
     exit(0)
 
 
 try:
     from oms.local_settings import SECRET_KEY
 except ModuleNotFoundError:
-    print("Brak konfiguracji secret key w pliku local_settings.py!")
-    print("Uzupełnij dane i spróbuj ponownie!")
+    print("There is no secret key configuration in the file local_settings.py!")
     exit(0)
