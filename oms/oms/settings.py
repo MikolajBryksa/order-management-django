@@ -25,9 +25,6 @@ import django_heroku
 #     print("There is no password configuration in the file local_settings.py!")
 #     exit(0)
 
-# from boto.s3.connection import S3Connection
-# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -154,3 +151,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_files'),)
 LOGIN_URL = '/login/'
 
 django_heroku.settings(locals())
+
+SECRET_KEY = os.getenv("SECRET_KEY")
