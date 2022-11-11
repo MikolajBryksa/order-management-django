@@ -1,1 +1,0 @@
-web gunicorn OMS.wsgi:application --log-file -
