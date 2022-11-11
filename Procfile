@@ -1,1 +1,1 @@
-web: gunicorn oms.wsgi --log-file -
+web: gunicorn --chdir oms oms.wsgi:application
