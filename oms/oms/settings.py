@@ -12,21 +12,31 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
-import dj_database_url
+
+# try:
+#     from oms.local_settings import SECRET_KEY
+# except ModuleNotFoundError:
+#     print("There is no secret key configuration in the file local_settings.py!")
+#     exit(0)
+#
+# try:
+#     from oms.local_settings import PASSWORD
+# except ModuleNotFoundError:
+#     print("There is no password configuration in the file local_settings.py!")
+#     exit(0)
+
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://oms-bryksa.herokuapp.com/']
-
 
 # Application definition
 
@@ -74,6 +84,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'oms.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'oms_db',
+#         'HOST': 'localhost',
+#         'USER': 'postgres',
+#         'PASSWORD': PASSWORD
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db9kuorkqaeu25',
+        'HOST': 'ec2-18-215-41-121.compute-1.amazonaws.com',
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'PORT': '5432'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -92,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -125,19 +154,3 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_files'),)
 LOGIN_URL = '/login/'
 
 django_heroku.settings(locals())
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-try:
-    from oms.local_settings import DATABASES
-except ModuleNotFoundError:
-    print("There is no database configuration in the file local_settings.py!")
-    exit(0)
-
-
-try:
-    from oms.local_settings import SECRET_KEY
-except ModuleNotFoundError:
-    print("There is no secret key configuration in the file local_settings.py!")
-    exit(0)

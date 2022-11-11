@@ -1,1 +1,1 @@
-gunicorn myproject.wsgi
+web: gunicorn --chdir oms oms.wsgi:application
