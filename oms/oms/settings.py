@@ -25,8 +25,8 @@ import django_heroku
 #     print("There is no password configuration in the file local_settings.py!")
 #     exit(0)
 
-from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+# from boto.s3.connection import S3Connection
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -99,8 +99,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db9kuorkqaeu25',
         'HOST': 'ec2-18-215-41-121.compute-1.amazonaws.com',
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
+        'USER': 'os.getenv("DB_USER")',
+        'PASSWORD': 'os.getenv("DB_PASSWORD")',
         'PORT': '5432'
     }
 }
