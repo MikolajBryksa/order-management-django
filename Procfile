@@ -1,1 +1,1 @@
-web: gunicorn oms.wsgi --log-file -
+gunicorn myproject.wsgi
