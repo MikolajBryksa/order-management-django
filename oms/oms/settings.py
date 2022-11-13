@@ -13,22 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import django_heroku
 
-# try:
-#     from oms.local_settings import SECRET_KEY
-# except ModuleNotFoundError:
-#     print("There is no secret key configuration in the file local_settings.py!")
-#     exit(0)
-#
-# try:
-#     from oms.local_settings import PASSWORD
-# except ModuleNotFoundError:
-#     print("There is no password configuration in the file local_settings.py!")
-#     exit(0)
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -81,6 +67,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'oms.wsgi.application'
 
+# Local database
+
+# try:
+#     from oms.local_settings import SECRET_KEY
+# except ModuleNotFoundError:
+#     print("There is no secret key configuration in the file local_settings.py!")
+#     exit(0)
+
+# try:
+#     from oms.local_settings import PASSWORD
+# except ModuleNotFoundError:
+#     print("There is no password configuration in the file local_settings.py!")
+#     exit(0)
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -90,6 +90,10 @@ WSGI_APPLICATION = 'oms.wsgi.application'
 #         'PASSWORD': PASSWORD
 #     }
 # }
+
+# Heroku database
+
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DATABASES = {
     'default': {
@@ -146,10 +150,8 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 STATIC_URL = '/static_files/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_files'),)
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static_files")]
 
 LOGIN_URL = '/login/'
 
 django_heroku.settings(locals())
 
-SECRET_KEY = os.getenv("SECRET_KEY")
