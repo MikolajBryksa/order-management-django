@@ -154,3 +154,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static_files'),)
 LOGIN_URL = '/login/'
 
 django_heroku.settings(locals())
+
