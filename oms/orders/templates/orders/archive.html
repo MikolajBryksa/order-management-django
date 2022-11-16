@@ -24,7 +24,7 @@
           <td data-label="seller">{{ order.seller }}</td>
           <td data-label="customer"><a href='/order_details/{{ order.pk}}' style="color: var(--light)">{{ order.customer }}</a></td>
           <td data-label="designer">{{ order.designer }}</td>
-          <td data-label="status"><b>{% trans order.status %}</b></td>
+          <td data-label="status">{% trans order.status %}</td>
           <td><a href='/order_edit/{{ order.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a></td>
         </tr>
     {% endfor %}

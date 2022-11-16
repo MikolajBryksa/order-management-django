@@ -34,10 +34,12 @@ class Order(models.Model):
     MAREK = 'Marek'
     NATALIA = 'Natalia'
     JOANNA = 'Joanna'
+    ANIA = 'Ania'
     SELLER = [
         (MAREK, 'Marek'),
         (NATALIA, 'Natalia'),
         (JOANNA, 'Joanna'),
+        (ANIA, 'Ania'),
     ]
 
     # Designer
@@ -71,8 +73,8 @@ class Action(models.Model):
         ordering = ['sequence']
 
     def __str__(self):
-        # return self.name
-        return self.translation
+        return self.name
+        # return self.translation
 
 
 class Item(models.Model):
