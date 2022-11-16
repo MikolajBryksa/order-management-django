@@ -27,13 +27,14 @@ class Stats(View):
         marek = Order.objects.filter(seller="Marek").exclude(status="Sent").count()
         natalia = Order.objects.filter(seller="Natalia").exclude(status="Sent").count()
         joanna = Order.objects.filter(seller="Joanna").exclude(status="Sent").count()
+        ania = Order.objects.filter(seller="Ania").exclude(status="Sent").count()
         miki = Order.objects.filter(designer='Miki').filter(
             Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(
                 status='Improvement')).count()
         ola = Order.objects.filter(designer='Ola').filter(
             Q(status='New') | Q(status='Urgent') | Q(status='Drawing') | Q(status='Incomplete') | Q(
                 status='Improvement')).count()
-        context = {"marek": marek, "natalia": natalia, "joanna": joanna, "miki": miki, "ola": ola}
+        context = {"marek": marek, "natalia": natalia, "joanna": joanna, "ania": ania, "miki": miki, "ola": ola}
         return render(request, 'orders/stats.html', context)
 
 
@@ -147,7 +148,9 @@ class OrderSearch(View):
             return render(request, self.template_name, {'form': form})
 
 
-class AddressDetails(View):
+class AddressDetails(LoginRequiredMixin, View):
+    login_url = '/login/'
+
     def get(self, request, order_pk):
         order = Order.objects.get(pk=order_pk)
         try:

@@ -54,8 +54,8 @@ class CommentAddForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    # customer = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
-    klient = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
+    customer = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
+    # klient = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
 
 
 class AddressAddForm(forms.ModelForm):

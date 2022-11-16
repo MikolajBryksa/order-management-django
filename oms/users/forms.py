@@ -7,8 +7,10 @@ User = get_user_model()
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'custom-selector'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'custom-selector'}),
+                               help_text='tester')
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'custom-selector'}),
+                               help_text='#TestSystem')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -53,4 +55,3 @@ class UserAddForm(forms.ModelForm):
         validate_password(pass1)
         if pass1 != pass2:
             raise ValidationError('Password must be the same')
-

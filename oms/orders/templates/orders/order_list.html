@@ -1,50 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load i18n %}
+    {% load i18n %}
 
-<h2></h2>
+    <h2></h2>
 
-<table class="table">
+    <table class="table">
 
-  <thead>
-    <tr>
-      <th scope="col">{%  trans "date" %}</th>
-      <th scope="col">{%  trans "seller" %}</th>
-      <th scope="col">{%  trans "customer" %}</th>
-      <th scope="col">{%  trans "designer" %}</th>
-      <th scope="col">Status</th>
-
-      <th scope="col">
-        {% if perms.orders.add_order %}
-            <a href='/order_add/'><button class="icon"><i class="bi-plus"></i></button></a>
-        {% endif %}
-
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    {% for order in orders %}
+        <thead>
         <tr>
-          <td data-label="date<">{{ order.date }}</td>
-          <td data-label="seller">{{ order.seller }}</td>
-            <td data-label="customer"><a href='/order_details/{{ order.pk}}' style="color: var(--light)">{{ order.customer }}</a></td>
-          <td data-label="designer">{{ order.designer }}</td>
-          <td data-label="status"><b>{% trans order.status %}</b></td>
-          <td><a href='/order_edit/{{ order.pk }}'><button class="icon"><i class="bi-pencil"></i></button></a></td>
+            <th scope="col">{% trans "date" %}</th>
+            <th scope="col">{% trans "seller" %}</th>
+            <th scope="col">{% trans "customer" %}</th>
+            <th scope="col">{% trans "designer" %}</th>
+            <th scope="col">Status</th>
+
+            <th scope="col">
+                {#        {% if perms.orders.add_order %}#}
+                <a href='/order_add/'>
+                    <button class="icon"><i class="bi-plus"></i></button>
+                </a>
+                {#        {% endif %}#}
+            </th>
+
         </tr>
+        </thead>
 
-    {% endfor %}
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td data-label="date<">{{ order.date }}</td>
+                <td data-label="seller">{{ order.seller }}</td>
+                <td data-label="customer"><a href='/order_details/{{ order.pk }}'
+                                             style="color: var(--light)">{{ order.customer }}</a></td>
+                <td data-label="designer">{{ order.designer }}</td>
+                <td data-label="status" class="status" id="status">{% trans order.status %}</td>
+                <td><a href='/order_edit/{{ order.pk }}'>
+                    <button class="icon"><i class="bi-pencil"></i></button>
+                </a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
 
-  </tbody>
-
-</table>
-</br>
-
-    <script>
-    const status = document.getElementById('designersChart').getContext('2d');
-
-    </script>
-
+    </table>
+    </br>
 
 {% endblock %}
