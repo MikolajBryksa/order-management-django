@@ -7,7 +7,5 @@ It **verifies the entered data** and reduces the number of activities required f
 
 ### Tech Stack
 
-- Python with Django (backend)
-- JavaScript (frontend)
+- Python with Django (backend & frontend)
 - PostgreSQL (database)
-
